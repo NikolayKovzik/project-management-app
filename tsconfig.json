@@ -5,15 +5,22 @@
     "jsx": "react",
     "module": "esnext",
     "moduleResolution": "node",
-    "noImplicitAny": true,
-    "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true,
+
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    
     "strict": true,
+    "noImplicitAny": true,
+    "noFallthroughCasesInSwitch": true,
+    // "noUnusedLocals": true,
+    "noUncheckedIndexedAccess": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+
     "skipLibCheck": true,
     "baseUrl": "./src",
     "resolveJsonModule": true
   },
-  "include": ["./src/**/*", "styled.d.ts"]
+  "include": ["./src/**/*", "styled.d.ts"],
+  "exclude": ["./node__modules", "./public"]
 }
