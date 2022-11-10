@@ -8,6 +8,7 @@ import NotfoundPage from 'pages/NotFoundPage/NotFoundPage';
 import Layout from 'components/Layout/Layout';
 
 import './styles/normalize.css';
+import './styles/fonts.css';
 import './styles/index.scss';
 
 function App(): ReactElement {
