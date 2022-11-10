@@ -1,0 +1,13 @@
+.home-page {
+  min-height: calc(100vh - 110px);
+  background: #ad9393;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__greeting {
+    color: #f4a261;
+    user-select: none;
+  }
+}

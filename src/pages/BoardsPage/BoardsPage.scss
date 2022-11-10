@@ -1,0 +1,10 @@
+.boards-page {
+  min-height: calc(100vh - 110px);
+  padding: 40px;
+  background: #6d7593;
+  &__description {
+    color: #fae6d1;
+    font-size: 24px;
+    text-align: center;
+  }
+}

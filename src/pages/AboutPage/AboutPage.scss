@@ -1,0 +1,10 @@
+.about-page {
+  min-height: calc(100vh - 110px);
+  padding: 40px;
+  background: #5c6e56;
+  &__description {
+    color: #fae6d1;
+    font-size: 24px;
+    text-align: center;
+  }
+}
