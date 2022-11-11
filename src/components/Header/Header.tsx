@@ -30,6 +30,16 @@ function Header(): ReactElement {
             About
           </NavLink>
         </li>
+        <li className="menu__item">
+          <NavLink to="/signin" className={setActive as SetActiveCallback}>
+            Sign In
+          </NavLink>
+        </li>
+        <li className="menu__item">
+          <NavLink to="/signup" className={setActive as SetActiveCallback}>
+            Sign Up
+          </NavLink>
+        </li>
       </ul>
     </header>
   );
