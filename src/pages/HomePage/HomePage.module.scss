@@ -1,0 +1,48 @@
+@import url('../../variables/Variables.module.scss');
+
+.home {
+  background: var(--color-darkpurple);
+}
+
+.container {
+  padding: 40px 0;
+}
+
+.mainContainer {
+  min-height: calc(100vh - 145px);
+  display: flex;
+  gap: 80px;
+}
+
+.titleContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 0;
+  gap: 30px;
+
+  p {
+    font-family: 'Montserrat-Regular';
+    color: var(--color-white);
+    font-size: 18px;
+  }
+
+  .title {
+    font-size: 24px;
+    font-family: 'Montserrat-Bold';
+    text-transform: uppercase;
+  }
+}
+
+.imageContainer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.mainImage {
+  width: 100%;
+  object-fit: contain;
+  border-radius: 20px;
+}
