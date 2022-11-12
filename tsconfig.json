@@ -8,13 +8,13 @@
 
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    
+
     "strict": true,
     "noImplicitAny": true,
     "noFallthroughCasesInSwitch": true,
     // "noUnusedLocals": true,
     "noUncheckedIndexedAccess": true,
-    "noPropertyAccessFromIndexSignature": true,
+    "noPropertyAccessFromIndexSignature": false,
     "noImplicitReturns": true,
 
     "skipLibCheck": true,
