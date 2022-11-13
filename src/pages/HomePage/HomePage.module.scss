@@ -11,6 +11,13 @@
 .mainContainer {
   min-height: calc(100vh - 145px);
   display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 40px;
+}
+
+.info {
+  display: flex;
   gap: 80px;
 }
 
@@ -45,4 +52,14 @@
   width: 100%;
   object-fit: contain;
   border-radius: 20px;
+}
+
+.startBtn {
+  font-size: 24px;
+  color: var(--color-white);
+  font-family: 'Montserrat-Regular';
+  padding: 15px 50px;
+  background: var(--color-green);
+  border-radius: 20px;
+  margin-bottom: 50px;
 }

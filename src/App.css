@@ -14,6 +14,18 @@ p {
   margin: 0;
 }
 
+button {
+  border: 0;
+}
+
+button:active,
+button:focus {
+  outline: none;
+}
+button::-moz-focus-inner {
+  border: 0;
+}
+
 /* Remove outline on the forms and links */
 :active,
 :hover,

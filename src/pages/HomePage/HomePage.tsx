@@ -10,21 +10,28 @@ function HomePage(): ReactElement {
       <div className="container">
         <div className={styles.container}>
           <div className={styles.mainContainer}>
-            <div className={styles.titleContainer}>
-              <p className={styles.title}>Project Management System</p>
-              <p>
-                If you want to find a convenient application in which it will be convenient to set
-                and complete tasks
-              </p>
-              <p>Then we are ready to present to your attention our application PMA</p>
-              <p>
-                With this application, you can easily manage your project, be aware of all tasks and
-                control the progress of their implementation
-              </p>
-            </div>
+            <div className={styles.info}>
+              <div className={styles.titleContainer}>
+                <p className={styles.title}>Project Management System</p>
+                <p>
+                  If you want to find a convenient application in which it will be convenient to set
+                  and complete tasks
+                </p>
+                <p>Then we are ready to present to your attention our application PMA</p>
+                <p>
+                  With this application, you can easily manage your project, be aware of all tasks
+                  and control the progress of their implementation
+                </p>
+              </div>
 
-            <div className={styles.imageContainer}>
-              <img className={styles.mainImage} src={mainImage} alt="home-kanban" />
+              <div className={styles.imageContainer}>
+                <img className={styles.mainImage} src={mainImage} alt="home-kanban" />
+              </div>
+            </div>
+            <div>
+              <button className={styles.startBtn} type="button">
+                Get started
+              </button>
             </div>
           </div>
         </div>
