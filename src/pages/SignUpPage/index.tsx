@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 
-function SignInPage(): ReactElement {
+function SignUpPage(): ReactElement {
   return (
     <>
       <h1>Register</h1>
@@ -12,4 +12,4 @@ function SignInPage(): ReactElement {
   );
 }
 
-export default SignInPage;
+export default SignUpPage;
