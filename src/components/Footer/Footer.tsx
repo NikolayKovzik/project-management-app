@@ -1,52 +1,41 @@
 import React, { ReactElement } from 'react';
 
+import githubImage from '../../assets/images/github.png';
+import rssImage from '../../assets/images/rs-school.png';
+
 import styles from './Footer.module.scss';
 
 function Footer(): ReactElement {
   return (
     <footer className={styles.footer}>
-      <div className="footer__inner">
-        <p className="footer__copyright">2022 ©</p>
-        <p className="footer__references">
-          <a
-            href="https://rs.school/"
-            className="footer__link footer__rsschool-link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            RS School
-          </a>
-        </p>
-        <p className="footer__social">
-          <a
-            href="https://github.com/NikolayKovzik"
-            className="footer__link footer__gh-link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Nikolay Kovzik
-          </a>
-        </p>
-        <p className="footer__social">
-          <a
-            href="https://github.com/DarkCrew"
-            className="footer__link footer__gh-link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Kirill Kovalev
-          </a>
-        </p>
-        <p className="footer__social">
-          <a
-            href="https://github.com/ishah148"
-            className="footer__link footer__gh-link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Igor Shah
-          </a>
-        </p>
+      <div className="container">
+        <div className={styles.container}>
+          <div className={styles.rssContainer}>
+            <a href="https://rs.school/" target="_blank" rel="noreferrer">
+              <img src={rssImage} alt="rss-logo" />
+            </a>
+          </div>
+          <p>© 2022</p>
+
+          <div className={styles.contact}>
+            <a href="https://github.com/NikolayKovzik" target="_blank" rel="noreferrer">
+              <img src={githubImage} alt="contact-nikolay" />
+              <p>Nikolay Kovzik</p>
+            </a>
+          </div>
+          <div className={styles.contact}>
+            <a href="https://github.com/DarkCrew" target="_blank" rel="noreferrer">
+              <img src={githubImage} alt="contact-nikolay" />
+              <p>Kirill Kovalev</p>
+            </a>
+          </div>
+          <div className={styles.contact}>
+            <a href="https://github.com/ishah148" target="_blank" rel="noreferrer">
+              <img src={githubImage} alt="contact-nikolay" />
+              <p>Igor Shah</p>
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );
