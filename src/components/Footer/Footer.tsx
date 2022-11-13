@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
 
-import './Footer.scss';
+import styles from './Footer.module.scss';
 
 function Footer(): ReactElement {
   return (
-    <footer className="footer">
+    <footer className={styles.footer}>
       <div className="footer__inner">
         <p className="footer__copyright">2022 ©</p>
         <p className="footer__references">
