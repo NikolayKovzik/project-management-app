@@ -1,7 +1,20 @@
 @import url('../../variables/Variables.module.scss');
 
+.header,
+.headerActive {
+  position: sticky;
+  top: 0;
+}
 .header {
   background-color: var(--color-darkgray);
+  transition: 1s;
+}
+.headerActive {
+  background-color: var(--color-nightgray);
+  -webkit-box-shadow: 0px 22px 27px 0px rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0px 22px 27px 0px rgba(0, 0, 0, 0.19);
+  box-shadow: 0px 22px 27px 0px rgba(0, 0, 0, 0.19);
+  transition: 1s;
 }
 
 .container {

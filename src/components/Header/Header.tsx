@@ -14,8 +14,25 @@ const setActive: SetActiveCallback = (props: SetActiveCallbackProps): string =>
   props.isActive ? 'active' : 'inactive';
 
 function Header(): ReactElement {
+  const [navbar, setNavbar] = React.useState(false);
+
+  const changeBackground = (): void => {
+    console.log(window.scrollY);
+    if (window.scrollY >= 50) {
+      setNavbar(false);
+    } else {
+      setNavbar(true);
+    }
+  };
+
+  React.useEffect(() => {
+    changeBackground();
+    // adding the event when scroll change Logo
+    window.addEventListener('scroll', changeBackground);
+  });
+
   return (
-    <header className={styles.header}>
+    <header className={navbar ? styles.header : styles.headerActive}>
       <div className="container">
         <div className={styles.container}>
           <div className={styles.logo}>
