@@ -1,0 +1,30 @@
+@import url('../../variables/Variables.module.scss');
+
+.header {
+  background-color: var(--color-darkgray);
+}
+
+.container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.menu {
+  display: flex;
+  height: 25px;
+  gap: 20px;
+  font-family: 'Montserrat-Regular';
+  font-size: 18px;
+
+  li {
+    a {
+      color: var(--color-white);
+      transition: 1s;
+    }
+    a:hover {
+      color: var(--color-orange);
+    }
+  }
+}

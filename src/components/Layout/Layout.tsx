@@ -8,7 +8,7 @@ import './Layout.scss';
 
 function Layout(): ReactElement {
   return (
-    <div className="container">
+    <div>
       <Header />
       <Outlet />
       <Footer />
