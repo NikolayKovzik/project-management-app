@@ -10,7 +10,6 @@ const setActive: SetActiveCallback = (props: SetActiveCallbackProps): string =>
 
 function Header(): ReactElement {
   return (
-
     <header className={styles.header}>
       <div className="container">
         <div className={styles.container}>
@@ -25,20 +24,19 @@ function Header(): ReactElement {
                 Boards
               </NavLink>
             </li>
-                    <li className="menu__item">
-          <NavLink to="/signin" className={setActive as SetActiveCallback}>
-            Sign In
-          </NavLink>
-        </li>
-        <li className="menu__item">
-          <NavLink to="/signup" className={setActive as SetActiveCallback}>
-            Sign Up
-          </NavLink>
-        </li>
+            <li className="menu__item">
+              <NavLink to="/signin" className={setActive as SetActiveCallback}>
+                Sign In
+              </NavLink>
+            </li>
+            <li className="menu__item">
+              <NavLink to="/signup" className={setActive as SetActiveCallback}>
+                Sign Up
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
-
     </header>
   );
 }
