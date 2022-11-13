@@ -24,11 +24,6 @@ function Header(): ReactElement {
                 Boards
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/about" className={setActive as SetActiveCallback}>
-                About
-              </NavLink>
-            </li>
           </ul>
         </div>
       </div>
