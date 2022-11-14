@@ -4,22 +4,64 @@ import styles from './BoardsPage.module.scss';
 
 function BoardsPage(): ReactElement {
   return (
-    <section className="boards-page">
-      <p className="boards-page__description">
-        mollitia? Lorem ipsum dolor sit amet, consectetur adipisicing elit. At iusto minus molestiae
-        quisquam quos repudiandae rerum sed ullam, voluptate! Ad commodi dignissimos dolor earum eum
-        illum molestias porro possimus rem! Consequuntur error minima repudiandae rerum sed ullam,
-        voluptate! Ad commodi dignissimos dolor earumrepudiandae rerum sed ullam, voluptate! Ad
-        commodi dignissimos dolor earumrepudiandae rerum sed ullam, voluptate! Ad commodi
-        dignissimos dolor earumrepudiandae rerum sed ullam, voluptate! Ad commodi dignissimos dolor
-        earum eum illum molestias porro possimus rem! Consequuntur error minima repudiandae rerum
-        sed ullam, voluptate! Ad cosed ullam, voluptate! Ad commodi dignissimos dolor earum eum
-        illum molestias porro possimus rem! Consequuntur error minima repudiandae rerum sed ullam,
-        voluptate! Ad cosed ullam, voluptate! Ad commodi dignissimos dolor earum eum illum molestias
-        porro possimus rem! Consequuntur error minima repudiandae rerum sed ullam, voluptate! Ad
-        cosed ullam, voluptate! Ad commodi dignissimos dolor earumrepudiandae rerum sed ullam,
-        voluptate! Ad commodi dignissimos dolor earum
-      </p>
+    <section className={styles.boards}>
+      <div className="container">
+        <div className={styles.container}>
+          <div className={styles.mainContainer}>
+            <div className={styles.board}>
+              <p className={styles.boardTitleDo}>To do</p>
+              <ul className={styles.boardContainer}>
+                <li>
+                  <p>Task 1</p>
+                  <button type="button" className={styles.deleteBtn}>
+                    &#10006;
+                  </button>
+                </li>
+                <li>
+                  <p>Task 5</p>
+                  <button type="button" className={styles.deleteBtn}>
+                    &#10006;
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div className={styles.board}>
+              <p className={styles.boardTitlePro}>In progress</p>
+              <ul className={styles.boardContainer}>
+                <li>
+                  <p>Task 4</p>
+                  <button type="button" className={styles.deleteBtn}>
+                    &#10006;
+                  </button>
+                </li>
+                <li>
+                  <p>Task 6</p>
+                  <button type="button" className={styles.deleteBtn}>
+                    &#10006;
+                  </button>
+                </li>
+                <li>
+                  <p>Task 2</p>
+                  <button type="button" className={styles.deleteBtn}>
+                    &#10006;
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div className={styles.board}>
+              <p className={styles.boardTitleDone}>Done</p>
+              <ul className={styles.boardContainer}>
+                <li>
+                  <p>Task 3</p>
+                  <button type="button" className={styles.deleteBtn}>
+                    &#10006;
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

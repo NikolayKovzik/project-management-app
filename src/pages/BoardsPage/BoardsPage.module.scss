@@ -1,10 +1,85 @@
-.boards-page {
-  min-height: calc(100vh - 110px);
-  padding: 40px;
-  background: #6d7593;
-  &__description {
-    color: #fae6d1;
-    font-size: 24px;
-    text-align: center;
+@import url('../../variables/Variables.module.scss');
+
+.boards {
+  background: var(--color-darkpurple);
+}
+
+.container {
+  padding: 40px 0;
+}
+
+.mainContainer {
+  min-height: calc(100vh - 145px);
+  display: flex;
+  gap: 40px;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  border-radius: 20px;
+  padding: 20px;
+  background: var(--color-darkgray);
+  box-sizing: border-box;
+}
+
+.boardTitleDo,
+.boardTitlePro,
+.boardTitleDone {
+  font-size: 20px;
+  color: var(--color-white);
+  font-family: 'Montserrat-Bold';
+  text-transform: uppercase;
+  text-align: center;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.boardTitleDo {
+  background: var(--color-purple);
+}
+.boardTitlePro {
+  background: var(--color-orange);
+}
+.boardTitleDone {
+  background: var(--color-green);
+}
+
+.boardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  border-radius: 20px;
+  padding: 20px;
+  background: var(--color-darkpurple);
+  box-sizing: border-box;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    color: var(--color-white);
+    font-family: 'Montserrat-Regular';
+    background: var(--color-darkgray);
+    box-sizing: border-box;
+  }
+
+  .deleteBtn {
+    font-size: 20px;
+    color: var(--color-white);
+    font-family: 'Montserrat-Regular';
+    cursor: pointer;
+    background: transparent;
+    transition: 0.5s;
+  }
+
+  .deleteBtn:hover {
+    filter: brightness(80%);
   }
 }
