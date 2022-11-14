@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import './BoardsPage.scss';
+import styles from './BoardsPage.module.scss';
 
 function BoardsPage(): ReactElement {
   return (
