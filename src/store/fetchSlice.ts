@@ -28,12 +28,14 @@ const fetchExampleSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchTodo.pending, (state, action) => {
+      .addCase(fetchTodo.pending, (state) => {
         state.status = 'pending';
       })
       .addCase(fetchTodo.fulfilled, (state, action) => {
-        // action.payload is result fetching data
         state.data.push(action.payload);
+        state.status = 'succeeded';
+      })
+      .addCase(fetchTodo.rejected, (state) => {
         state.status = 'succeeded';
       });
   },
