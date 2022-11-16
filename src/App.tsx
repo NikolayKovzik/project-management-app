@@ -3,9 +3,9 @@ import { Route, Routes } from 'react-router-dom';
 import RequireAuth from 'hocs/RequireAuth';
 import BoardsPage from 'pages/BoardsPage/BoardsPage';
 import HomePage from 'pages/HomePage/HomePage';
-import LoginPage from 'pages/LoginPage';
 import NotfoundPage from 'pages/NotFoundPage/NotFoundPage';
-import SignInPage from 'pages/SignInPage';
+import LoginPage from 'pages/SignInPage/SignInPage';
+import SignUpPage from 'pages/SignUpPage/SignUpPage';
 
 import Layout from 'components/Layout/Layout';
 
@@ -21,7 +21,7 @@ function App(): ReactElement {
 
         {/* <Route path="boards" element={<BoardsPage />} /> */}
         <Route path="signin" element={<LoginPage />} />
-        <Route path="signup" element={<SignInPage />} />
+        <Route path="signup" element={<SignUpPage />} />
         <Route
           path="/boards"
           element={
