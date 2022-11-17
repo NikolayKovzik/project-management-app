@@ -1,10 +1,13 @@
 import React, { ReactElement } from 'react';
+import { useAppDispatch, useAppSelector } from 'store';
 
 import mainImage from '../../assets/images/kanaban.png';
 
 import styles from './HomePage.module.scss';
 
 function HomePage(): ReactElement {
+  const todos = useAppSelector((state) => state.todos.list);
+  const dispatch = useAppDispatch();
   return (
     <section className={styles.home}>
       <div className="container">
