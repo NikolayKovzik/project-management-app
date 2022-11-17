@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import React, { ReactElement } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import RequireAuth from 'hocs/RequireAuth';
@@ -7,7 +6,6 @@ import HomePage from 'pages/HomePage/HomePage';
 import NotfoundPage from 'pages/NotFoundPage/NotFoundPage';
 import LoginPage from 'pages/SignInPage/SignInPage';
 import SignUpPage from 'pages/SignUpPage/SignUpPage';
-import TestRedux from 'TempRedux';
 
 import Layout from 'components/Layout/Layout';
 
@@ -21,7 +19,7 @@ function App(): ReactElement {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
 
-        <Route path="test" element={<TestRedux />} />
+        {/* <Route path="boards" element={<BoardsPage />} /> */}
         <Route path="signin" element={<LoginPage />} />
         <Route path="signup" element={<SignUpPage />} />
         <Route
