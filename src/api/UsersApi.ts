@@ -1,25 +1,34 @@
 import { AxiosResponse } from 'axios';
 
-import { Token, User, UserLoginData, UserRegistrationData } from './models';
+import { User, UserRegistrationData } from './models';
 import ManagerAppApi from './RestService';
 
 class UsersApi {
-  static async signUp(userData: UserRegistrationData): Promise<AxiosResponse<User>> {
-    const res = await ManagerAppApi.post<User>(`/auth/signup`, userData);
-    console.log('resp signUp', res);
-    return res;
-  }
-
-  static async signIn(userData: UserLoginData): Promise<AxiosResponse<Token>> {
-    const res = await ManagerAppApi.post<Token>(`/auth/signin`, userData);
-    console.log('resp signIn', res);
-    localStorage.setItem('token', res.data.token);
-    return res;
-  }
-
   static async getUsers(): Promise<AxiosResponse<User[]>> {
-    const res = await ManagerAppApi.get(`/users`);
+    const res = await ManagerAppApi.get<User[]>(`/users`);
     console.log('resp getUsers', res);
+    return res;
+  }
+
+  static async getUser(userId: string): Promise<AxiosResponse<User>> {
+    const res = await ManagerAppApi.get<User>(`/users/${userId}`);
+    console.log('resp getUser', res);
+    return res;
+  }
+
+  static async updateUser(
+    // TODO handle 404 & 409 login already exists
+    userId: string,
+    newUser: UserRegistrationData
+  ): Promise<AxiosResponse<User>> {
+    const res = await ManagerAppApi.put<User>(`/users/${userId}`, newUser);
+    console.log('resp', res);
+    return res;
+  }
+
+  static async deleteUser(userId: string): Promise<AxiosResponse<User>> {
+    const res = await ManagerAppApi.delete<User>(`/users/${userId}`);
+    console.log('resp deleteUser', res);
     return res;
   }
 }

@@ -24,8 +24,9 @@ ManagerAppApi.interceptors.response.use(
   },
   async (error: AxiosError) => {
     const originalRequest = error.config;
-    if (error.response?.status === 401) {
+    if (error.response?.status === 401 /* && !isRetry */) {
       try {
+        // isRetry = true; //TODO чтобы не было бесконечного цикла
         const { userId } = JSON.parse(localStorage.getItem('user') || '');
 
         const { refreshToken } = JSON.parse(localStorage.getItem('user') || '');
