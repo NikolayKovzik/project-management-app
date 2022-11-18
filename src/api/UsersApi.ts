@@ -1,49 +1,27 @@
-import { AxiosError } from 'axios';
+import { AxiosResponse } from 'axios';
 
+import { Token, User, UserLoginData, UserRegistrationData } from './models';
 import ManagerAppApi from './RestService';
 
-type UserRegistrationData = {
-  name: string;
-  login: string;
-  password: string;
-};
-
-type UserBasicData = {
-  login: string;
-  name: string;
-  _id: string;
-};
-
-type SignUpResponse = {
-  status: number;
-  data: UserBasicData | string;
-};
-
 class UsersApi {
-  static async signUp(userData: UserRegistrationData): Promise<SignUpResponse> {
-    try {
-      const res = await ManagerAppApi.post(`/auth/signup`, userData);
-      console.log('resp', res);
-      return {
-        status: res.status,
-        data: res.data,
-      };
-    } catch (err: unknown) {
-      console.log(err);
-      return {
-        status: 409,
-        data: 'hmmmm',
-      };
-    }
+  static async signUp(userData: UserRegistrationData): Promise<AxiosResponse<User>> {
+    const res = await ManagerAppApi.post<User>(`/auth/signup`, userData);
+    console.log('resp signUp', res);
+    return res;
   }
 
-  // static async getUsers() {
-  //   const res = await ManagerAppAPI.get(`/`);
-  //   return {
-  //     status: res.status,
-  //     data: res.data,
-  //   };
-  // }
+  static async signIn(userData: UserLoginData): Promise<AxiosResponse<Token>> {
+    const res = await ManagerAppApi.post<Token>(`/auth/signin`, userData);
+    console.log('resp signIn', res);
+    localStorage.setItem('token', res.data.token);
+    return res;
+  }
+
+  static async getUsers(): Promise<AxiosResponse<User[]>> {
+    const res = await ManagerAppApi.get(`/users`);
+    console.log('resp getUsers', res);
+    return res;
+  }
 }
 
 export default UsersApi;

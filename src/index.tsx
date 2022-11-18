@@ -5,7 +5,13 @@ import UsersApi from 'api/UsersApi';
 
 import App from './App';
 
-UsersApi.signUp({ name: 'Ilon', login: 'Ilon', password: 'qwerty123' });
+async function xex(): Promise<void> {
+  // await UsersApi.signUp({ name: 'Ilo7776', login: 'Ilo7776', password: 'qwerty123' });
+  await UsersApi.signIn({ login: 'Ilo7776', password: 'qwerty123' });
+  await UsersApi.getUsers();
+}
+
+xex();
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
