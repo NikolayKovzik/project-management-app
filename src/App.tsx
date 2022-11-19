@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import React, { ReactElement } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import RequireAuth from 'hocs/RequireAuth';
+import RequireAuth from 'core/hocs/RequireAuth';
 import BoardsPage from 'pages/BoardsPage/BoardsPage';
 import HomePage from 'pages/HomePage/HomePage';
 import NotfoundPage from 'pages/NotFoundPage/NotFoundPage';
@@ -12,8 +12,8 @@ import TestRedux from 'TempRedux';
 import Layout from 'components/Layout/Layout';
 
 import './App.css';
-import './styles/normalize.css';
-import './styles/index.scss';
+import './assets/styles/normalize.css';
+import './assets/styles/index.scss';
 
 function App(): ReactElement {
   return (

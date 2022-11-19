@@ -1,7 +1,8 @@
 import { AxiosResponse } from 'axios';
 
+import ManagerAppApi from '../rest/RestService';
+
 import { User, UserRegistrationData } from './models';
-import ManagerAppApi from './RestService';
 
 class UsersApi {
   static async getUsers(): Promise<AxiosResponse<User[]>> {

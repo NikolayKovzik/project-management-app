@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
-import AuthApi from 'api/AuthApi';
-import BoardsApi from 'api/BoardsApi';
-import UsersApi from 'api/UsersApi';
+import BoardsApi from 'core/api/BoardsApi';
+import UsersApi from 'core/api/UsersApi';
+import AuthApi from 'core/rest/AuthApi';
 import store from 'store';
 
 import App from './App';

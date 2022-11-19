@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
 function RequireAuth({ children }: { children: JSX.Element }): ReactElement {
-  const auth = true; // fish
+  const auth = false; // fish
   // TODO get auth status
   const location = useLocation();
 
@@ -11,7 +11,7 @@ function RequireAuth({ children }: { children: JSX.Element }): ReactElement {
     // trying to go to when they were redirected. This allows us to send them
     // along to that page after they login, which is a nicer user experience
     // than dropping them off on the home page.
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/signin" state={{ from: location }} replace />;
   }
 
   return children;

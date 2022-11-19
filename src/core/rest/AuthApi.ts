@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios';
 
-import { AuthToken, User, UserLoginData, UserRegistrationData } from './models';
+import { AuthToken, User, UserLoginData, UserRegistrationData } from '../api/models';
+
 import ManagerAppApi from './RestService';
 
 class AuthApi {
