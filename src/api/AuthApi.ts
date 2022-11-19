@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 
-import { Token, User, UserLoginData, UserRegistrationData } from './models';
+import { AuthToken, User, UserLoginData, UserRegistrationData } from './models';
 import ManagerAppApi from './RestService';
 
 class AuthApi {
@@ -10,8 +10,8 @@ class AuthApi {
     return res;
   }
 
-  static async signIn(userData: UserLoginData): Promise<AxiosResponse<Token>> {
-    const res = await ManagerAppApi.post<Token>(`/auth/signin`, userData);
+  static async signIn(userData: UserLoginData): Promise<AxiosResponse<AuthToken>> {
+    const res = await ManagerAppApi.post<AuthToken>(`/auth/signin`, userData);
     // console.log('resp signIn', res);
     localStorage.setItem('token', res.data.token);
     return res;

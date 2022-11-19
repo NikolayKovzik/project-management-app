@@ -4,10 +4,7 @@ export type UserRegistrationData = {
   password: string;
 };
 
-export type UserLoginData = {
-  login: string;
-  password: string;
-};
+export type UserLoginData = Omit<UserRegistrationData, 'name'>;
 
 export type User = {
   _id: string;
@@ -15,6 +12,15 @@ export type User = {
   name: string;
 };
 
-export type Token = {
+export type AuthToken = {
   token: string;
 };
+
+export type Board = {
+  _id: string;
+  title: string;
+  owner: string;
+  users: string[];
+};
+
+export type BoardBody = Omit<Board, '_id'>;
