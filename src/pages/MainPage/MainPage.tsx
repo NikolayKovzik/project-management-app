@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import BoardsApi from 'core/api/BoardsApi';
-import { Board } from 'core/api/models';
+import { Board, BoardBody } from 'core/api/models';
 
 import BoardItem from 'components/BoardItem/BoardItem';
 
