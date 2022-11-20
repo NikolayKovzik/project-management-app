@@ -14,9 +14,10 @@ import styles from './BoardItem.module.scss';
 
 export type Props = {
   boardInfo: Board;
+  deleteCurrentBoard: (id: string) => void;
 };
 
-function BoardItem({ boardInfo }: Props): ReactElement {
+function BoardItem({ boardInfo, deleteCurrentBoard }: Props): ReactElement {
   const [modalWindow, setModalWindow] = React.useState(false);
   const boardNumber = boardInfo._id.slice(boardInfo._id.length - 4);
 
@@ -27,6 +28,7 @@ function BoardItem({ boardInfo }: Props): ReactElement {
 
   function deleteBoard(): void {
     BoardsApi.deleteBoard(boardInfo._id);
+    deleteCurrentBoard(boardInfo._id);
   }
 
   return (
