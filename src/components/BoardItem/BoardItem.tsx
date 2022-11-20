@@ -2,6 +2,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
+import BoardsApi from 'core/api/BoardsApi';
 import { Board } from 'core/api/models';
 
 import ModalWindow from 'components/ModalWindow/ModalWindow';
@@ -13,16 +14,21 @@ import styles from './BoardItem.module.scss';
 
 export type Props = {
   boardInfo: Board;
+  deleteCurrentBoard: (id: string) => void;
 };
 
-function BoardItem({ boardInfo }: Props): ReactElement {
+function BoardItem({ boardInfo, deleteCurrentBoard }: Props): ReactElement {
   const [modalWindow, setModalWindow] = React.useState(false);
   const boardNumber = boardInfo._id.slice(boardInfo._id.length - 4);
 
-  function showModalWindow(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+  function toggleModalWindow(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
     event.preventDefault();
     setModalWindow(!modalWindow);
-    console.log('show');
+  }
+
+  function deleteBoard(): void {
+    BoardsApi.deleteBoard(boardInfo._id);
+    deleteCurrentBoard(boardInfo._id);
   }
 
   return (
@@ -38,13 +44,15 @@ function BoardItem({ boardInfo }: Props): ReactElement {
           </div>
           <div className={styles.delete}>
             <p>owner: {boardInfo.owner}</p>
-            <button type="button" className={styles.bin} onClick={showModalWindow}>
+            <button type="button" className={styles.bin} onClick={toggleModalWindow}>
               <img className={styles.binImage} src={binImage} alt="bin" />
             </button>
           </div>
         </div>
       </NavLink>
-      {modalWindow && <ModalWindow showModalWindow={showModalWindow} />}
+      {modalWindow && (
+        <ModalWindow toggleModalWindow={toggleModalWindow} deleteBoard={deleteBoard} />
+      )}
     </>
   );
 }

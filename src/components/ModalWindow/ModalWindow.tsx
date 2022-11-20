@@ -7,24 +7,25 @@ import answerImage from '../../assets/images/answer.png';
 import styles from './ModalWindow.module.scss';
 
 type Props = {
-  showModalWindow: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  toggleModalWindow: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  deleteBoard: () => void;
 };
 
-function ModalWindow({ showModalWindow }: Props): ReactElement {
+function ModalWindow({ toggleModalWindow, deleteBoard }: Props): ReactElement {
   function disableClick(event: { stopPropagation: () => void }): void {
     event.stopPropagation();
   }
 
   function deleteItem(e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
-    console.log('delete');
-    showModalWindow(e);
+    deleteBoard();
+    toggleModalWindow(e);
   }
 
   return (
-    <button type="button" className={styles.modalWindow} onClick={showModalWindow}>
+    <button type="button" className={styles.modalWindow} onClick={toggleModalWindow}>
       <div className={styles.filter} />
       <div className={styles.container} onClick={disableClick}>
-        <button type="button" className={styles.closeBtn} onClick={showModalWindow}>
+        <button type="button" className={styles.closeBtn} onClick={toggleModalWindow}>
           &times;
         </button>
         <img className={styles.answerImage} src={answerImage} alt="answer" />
@@ -33,7 +34,7 @@ function ModalWindow({ showModalWindow }: Props): ReactElement {
           <button type="button" className={styles.buttonYes} onClick={deleteItem}>
             Yes
           </button>
-          <button type="button" className={styles.buttonNo} onClick={showModalWindow}>
+          <button type="button" className={styles.buttonNo} onClick={toggleModalWindow}>
             No
           </button>
         </div>
