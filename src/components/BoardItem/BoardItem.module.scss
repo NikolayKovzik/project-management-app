@@ -55,6 +55,14 @@
   height: 100%;
 }
 
+.bin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  height: 100%;
+}
+
 .binImage {
   height: 70%;
   object-fit: contain;
