@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 
 import { Board, BoardBody } from './models';
-import ManagerAppApi from './RestService';
+import ManagerAppApi from '../rest/RestService';
 
 class BoardsApi {
   static async getBoard(boardId: string): Promise<AxiosResponse<Board>> {
