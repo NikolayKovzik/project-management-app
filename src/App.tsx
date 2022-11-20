@@ -12,8 +12,8 @@ import TestRedux from 'TempRedux';
 import Layout from 'components/Layout/Layout';
 
 import './App.css';
-import './assets/styles/normalize.css';
-import './assets/styles/index.scss';
+import './styles/normalize.css';
+import './styles/index.scss';
 
 function App(): ReactElement {
   return (
