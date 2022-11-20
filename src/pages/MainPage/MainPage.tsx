@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable no-underscore-dangle */
 import React, { ReactElement } from 'react';
 import BoardsApi from 'core/api/BoardsApi';
 import { Board } from 'core/api/models';
@@ -17,13 +19,18 @@ function MainPage(): ReactElement {
     getAllBoards();
   }, []);
 
+  function deleteCurrentBoard(id: string): void {
+    BoardsApi.deleteBoard(id);
+    setData(data.filter((board) => board._id !== id));
+  }
+
   return (
     <section className={styles.home}>
       <div className="container">
         <div className={styles.container}>
           <div className={styles.mainContainer}>
             {data.map((board: Board) => (
-              <BoardItem boardInfo={board} />
+              <BoardItem boardInfo={board} deleteCurrentBoard={deleteCurrentBoard} />
             ))}
           </div>
         </div>

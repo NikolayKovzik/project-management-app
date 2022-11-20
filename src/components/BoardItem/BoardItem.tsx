@@ -1,7 +1,11 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable no-underscore-dangle */
 import React, { ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
+import BoardsApi from 'core/api/BoardsApi';
 import { Board } from 'core/api/models';
+
+import ModalWindow from 'components/ModalWindow/ModalWindow';
 
 import binImage from '../../assets/images/bin.png';
 import boardImage from '../../assets/images/board.png';
@@ -10,27 +14,46 @@ import styles from './BoardItem.module.scss';
 
 export type Props = {
   boardInfo: Board;
+  deleteCurrentBoard: (id: string) => void;
 };
 
-function BoardItem({ boardInfo }: Props): ReactElement {
+function BoardItem({ boardInfo, deleteCurrentBoard }: Props): ReactElement {
+  const [modalWindow, setModalWindow] = React.useState(false);
   const boardNumber = boardInfo._id.slice(boardInfo._id.length - 4);
 
+  function toggleModalWindow(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+    event.preventDefault();
+    setModalWindow(!modalWindow);
+  }
+
+  function deleteBoard(): void {
+    BoardsApi.deleteBoard(boardInfo._id);
+    deleteCurrentBoard(boardInfo._id);
+  }
+
   return (
-    <NavLink to="/boards">
-      <div className={styles.board}>
-        <div className={styles.info}>
-          <div className={styles.boardNumber}>
-            <img className={styles.boardImage} src={boardImage} alt="board" />
-            <p className={styles.number}>#{boardNumber}</p>
+    <>
+      <NavLink to="/boards">
+        <div className={styles.board}>
+          <div className={styles.info}>
+            <div className={styles.boardNumber}>
+              <img className={styles.boardImage} src={boardImage} alt="board" />
+              <p className={styles.number}>#{boardNumber}</p>
+            </div>
+            <p>{boardInfo.title}</p>
           </div>
-          <p>{boardInfo.title}</p>
+          <div className={styles.delete}>
+            <p>owner: {boardInfo.owner}</p>
+            <button type="button" className={styles.bin} onClick={toggleModalWindow}>
+              <img className={styles.binImage} src={binImage} alt="bin" />
+            </button>
+          </div>
         </div>
-        <div className={styles.delete}>
-          <p>owner: {boardInfo.owner}</p>
-          <img className={styles.binImage} src={binImage} alt="bin" />
-        </div>
-      </div>
-    </NavLink>
+      </NavLink>
+      {modalWindow && (
+        <ModalWindow toggleModalWindow={toggleModalWindow} deleteBoard={deleteBoard} />
+      )}
+    </>
   );
 }
 
