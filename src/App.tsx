@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import RequireAuth from 'core/hocs/RequireAuth';
 import BoardsPage from 'pages/BoardsPage/BoardsPage';
 import HomePage from 'pages/HomePage/HomePage';
+import MainPage from 'pages/MainPage/MainPage';
 import NotfoundPage from 'pages/NotFoundPage/NotFoundPage';
 import LoginPage from 'pages/SignInPage/SignInPage';
 import SignUpPage from 'pages/SignUpPage/SignUpPage';
@@ -24,6 +25,7 @@ function App(): ReactElement {
         <Route path="test" element={<TestRedux />} />
         <Route path="signin" element={<LoginPage />} />
         <Route path="signup" element={<SignUpPage />} />
+        <Route path="main" element={<MainPage />} />
         <Route
           path="/boards"
           element={
