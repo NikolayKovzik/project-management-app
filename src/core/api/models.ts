@@ -24,3 +24,14 @@ export type Board = {
 };
 
 export type BoardBody = Omit<Board, '_id'>;
+
+export type Column = {
+  _id: string;
+  title: string;
+  order: number;
+  boardId: string;
+};
+
+export type ColumnBody = Omit<Column, '_id' | 'boardId'>;
+export type ColumnPostBody = Omit<Column, '_id'>;
+export type ColumnPatchBody = Omit<Column, 'title' | 'boardId'>;
