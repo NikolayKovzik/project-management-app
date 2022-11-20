@@ -4,9 +4,9 @@ import i18n from 'i18next';
 
 function TestTranslate(): ReactElement {
   const { t } = useTranslation();
-  function changeLang(lang: string): void {
+  const changeLang = (lang: string): void => {
     i18n.changeLanguage(lang);
-  }
+  };
   return (
     <>
       <h1>Translate Page</h1>
