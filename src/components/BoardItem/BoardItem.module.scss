@@ -45,6 +45,16 @@
   object-fit: contain;
 }
 
+.delete {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 15px;
+  font-family: 'Montserrat-Regular';
+  color: var(--color-white);
+  height: 100%;
+}
+
 .binImage {
   height: 70%;
   object-fit: contain;
