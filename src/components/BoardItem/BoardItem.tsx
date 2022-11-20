@@ -6,7 +6,7 @@ import boardImage from '../../assets/images/board.png';
 
 import styles from './BoardItem.module.scss';
 
-function Board(): ReactElement {
+function BoardItem(): ReactElement {
   return (
     <NavLink to="/boards">
       <div className={styles.board}>
@@ -23,4 +23,4 @@ function Board(): ReactElement {
   );
 }
 
-export default Board;
+export default BoardItem;

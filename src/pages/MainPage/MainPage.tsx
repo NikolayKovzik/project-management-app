@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import Board from 'components/BoardItem/BoardItem';
+import BoardItem from 'components/BoardItem/BoardItem';
 
 import styles from './MainPage.module.scss';
 
@@ -10,7 +10,7 @@ function MainPage(): ReactElement {
       <div className="container">
         <div className={styles.container}>
           <div className={styles.mainContainer}>
-            <Board />
+            <BoardItem />
           </div>
         </div>
       </div>
