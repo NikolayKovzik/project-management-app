@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
 function RequireAuth({ children }: { children: JSX.Element }): ReactElement {
-  const auth = false; // fish
+  const auth = true; // fish
   // TODO get auth status
   const location = useLocation();
 

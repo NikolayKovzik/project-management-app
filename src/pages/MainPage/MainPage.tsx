@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import Board from 'components/Board/Board';
+import Board from 'components/BoardItem/BoardItem';
 
 import styles from './MainPage.module.scss';
 
