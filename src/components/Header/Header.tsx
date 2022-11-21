@@ -1,5 +1,9 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { ReactElement, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+
+import ModalWindow from 'components/ModalWindow/ModalWindow';
 
 import languageImage from '../../assets/images/language.png';
 import logo from '../../assets/images/logo.png';
@@ -16,6 +20,15 @@ const setActive: SetActiveCallback = (props: SetActiveCallbackProps): string =>
 
 const Header = (): ReactElement => {
   const [auth, setAuth] = useState(true);
+
+  const [modalWindow, setModalWindow] = useState(false);
+  const toggleModalWindow = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+    event.preventDefault();
+    setModalWindow(!modalWindow);
+  };
+  const deleteBoard = (): void => {
+    console.log('g');
+  };
 
   const [navbar, setNavbar] = useState(false);
 
@@ -44,10 +57,15 @@ const Header = (): ReactElement => {
           </div>
           <ul className={styles.menu}>
             {auth && (
-              <li>
-                <NavLink to="/newboard" className={setActive as SetActiveCallback}>
-                  + New board
-                </NavLink>
+              <li onClick={toggleModalWindow}>
+                + New board
+                {modalWindow && (
+                  <ModalWindow
+                    type="create"
+                    toggleModalWindow={toggleModalWindow}
+                    deleteBoard={deleteBoard}
+                  />
+                )}
               </li>
             )}
             {auth && (
