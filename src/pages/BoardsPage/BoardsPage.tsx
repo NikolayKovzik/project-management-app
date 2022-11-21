@@ -1,8 +1,10 @@
 import React, { ReactElement } from 'react';
 
+import Board from 'components/Board/Board';
+
 import styles from './BoardsPage.module.scss';
 
-function BoardsPage(): ReactElement {
+const BoardsPage = (): ReactElement => {
   return (
     <section className={styles.boards}>
       <div className="container">
@@ -48,22 +50,12 @@ function BoardsPage(): ReactElement {
                 </li>
               </ul>
             </div>
-            <div className={styles.board}>
-              <p className={styles.boardTitleDone}>Done</p>
-              <ul className={styles.boardContainer}>
-                <li>
-                  <p>Task 3</p>
-                  <button type="button" className={styles.deleteBtn}>
-                    &#10006;
-                  </button>
-                </li>
-              </ul>
-            </div>
+            <Board />
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default BoardsPage;

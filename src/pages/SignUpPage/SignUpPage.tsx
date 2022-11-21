@@ -5,7 +5,7 @@ import signImage from '../../assets/images/registration.png';
 
 import styles from './SignUpPage.module.scss';
 
-function SignUpPage(): ReactElement {
+const SignUpPage = (): ReactElement => {
   return (
     <section className={styles.signup}>
       <div className="container">
@@ -33,6 +33,6 @@ function SignUpPage(): ReactElement {
       </div>
     </section>
   );
-}
+};
 
 export default SignUpPage;

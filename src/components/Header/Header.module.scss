@@ -109,7 +109,8 @@
 }
 
 .itemSignIn,
-.itemSignUp {
+.itemSignUp,
+.itemSignOut {
   height: 100%;
   padding: 5px 0;
   a {
@@ -121,6 +122,12 @@
       height: 100%;
     }
   }
+}
+
+.itemSignOut {
+  padding: 5px 15px;
+  background: var(--color-blue);
+  border-radius: 20px;
 }
 
 .itemSignUp {

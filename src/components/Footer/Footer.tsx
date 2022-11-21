@@ -5,7 +5,7 @@ import rssImage from '../../assets/images/rs-school.png';
 
 import styles from './Footer.module.scss';
 
-function Footer(): ReactElement {
+const Footer = (): ReactElement => {
   return (
     <footer className={styles.footer}>
       <div className="container">
@@ -39,6 +39,6 @@ function Footer(): ReactElement {
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;

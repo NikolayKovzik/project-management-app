@@ -5,7 +5,7 @@ import notfoundImage from '../../assets/images/notfound.png';
 
 import styles from './NotFoundPage.module.scss';
 
-function NotfoundPage(): ReactElement {
+const NotfoundPage = (): ReactElement => {
   return (
     <section className={styles.notfound}>
       <div className="container">
@@ -27,6 +27,6 @@ function NotfoundPage(): ReactElement {
       </div>
     </section>
   );
-}
+};
 
 export default NotfoundPage;
