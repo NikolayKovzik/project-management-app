@@ -6,7 +6,7 @@ import Header from '../Header/Header';
 
 import './Layout.scss';
 
-function Layout(): ReactElement {
+const Layout = (): ReactElement => {
   return (
     <div>
       <Header />
@@ -14,6 +14,6 @@ function Layout(): ReactElement {
       <Footer />
     </div>
   );
-}
+};
 
 export default Layout;

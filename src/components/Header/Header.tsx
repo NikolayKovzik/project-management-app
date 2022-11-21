@@ -14,7 +14,7 @@ import styles from './Header.module.scss';
 const setActive: SetActiveCallback = (props: SetActiveCallbackProps): string =>
   props.isActive ? 'active' : 'inactive';
 
-function Header(): ReactElement {
+const Header = (): ReactElement => {
   const [auth, setAuth] = React.useState(true);
 
   const [navbar, setNavbar] = React.useState(false);
@@ -104,6 +104,6 @@ function Header(): ReactElement {
       </div>
     </header>
   );
-}
+};
 
 export default Header;

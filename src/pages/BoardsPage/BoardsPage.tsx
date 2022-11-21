@@ -4,7 +4,7 @@ import Board from 'components/Board/Board';
 
 import styles from './BoardsPage.module.scss';
 
-function BoardsPage(): ReactElement {
+const BoardsPage = (): ReactElement => {
   return (
     <section className={styles.boards}>
       <div className="container">
@@ -56,6 +56,6 @@ function BoardsPage(): ReactElement {
       </div>
     </section>
   );
-}
+};
 
 export default BoardsPage;

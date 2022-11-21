@@ -8,7 +8,7 @@ import BoardItem from 'components/BoardItem/BoardItem';
 
 import styles from './MainPage.module.scss';
 
-function MainPage(): ReactElement {
+const MainPage = (): ReactElement => {
   const [data, setData] = React.useState<Board[]>([]);
 
   React.useEffect(() => {
@@ -19,10 +19,10 @@ function MainPage(): ReactElement {
     getAllBoards();
   }, []);
 
-  function deleteCurrentBoard(id: string): void {
+  const deleteCurrentBoard = (id: string): void => {
     BoardsApi.deleteBoard(id);
     setData(data.filter((board) => board._id !== id));
-  }
+  };
 
   return (
     <section className={styles.home}>
@@ -37,6 +37,6 @@ function MainPage(): ReactElement {
       </div>
     </section>
   );
-}
+};
 
 export default MainPage;

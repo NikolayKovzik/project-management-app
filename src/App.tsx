@@ -16,7 +16,7 @@ import './App.css';
 import './styles/normalize.css';
 import './styles/index.scss';
 
-function App(): ReactElement {
+const App = (): ReactElement => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -39,6 +39,6 @@ function App(): ReactElement {
       </Route>
     </Routes>
   );
-}
+};
 
 export default App;

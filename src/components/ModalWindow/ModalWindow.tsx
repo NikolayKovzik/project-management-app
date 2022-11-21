@@ -11,15 +11,15 @@ type Props = {
   deleteBoard: () => void;
 };
 
-function ModalWindow({ toggleModalWindow, deleteBoard }: Props): ReactElement {
-  function disableClick(event: { stopPropagation: () => void }): void {
+const ModalWindow = ({ toggleModalWindow, deleteBoard }: Props): ReactElement => {
+  const disableClick = (event: { stopPropagation: () => void }): void => {
     event.stopPropagation();
-  }
+  };
 
-  function deleteItem(e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+  const deleteItem = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     deleteBoard();
     toggleModalWindow(e);
-  }
+  };
 
   return (
     <button type="button" className={styles.modalWindow} onClick={toggleModalWindow}>
@@ -41,6 +41,6 @@ function ModalWindow({ toggleModalWindow, deleteBoard }: Props): ReactElement {
       </div>
     </button>
   );
-}
+};
 
 export default ModalWindow;

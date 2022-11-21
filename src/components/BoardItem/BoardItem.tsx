@@ -17,19 +17,19 @@ export type Props = {
   deleteCurrentBoard: (id: string) => void;
 };
 
-function BoardItem({ boardInfo, deleteCurrentBoard }: Props): ReactElement {
+const BoardItem = ({ boardInfo, deleteCurrentBoard }: Props): ReactElement => {
   const [modalWindow, setModalWindow] = React.useState(false);
   const boardNumber = boardInfo._id.slice(boardInfo._id.length - 4);
 
-  function toggleModalWindow(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+  const toggleModalWindow = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     event.preventDefault();
     setModalWindow(!modalWindow);
-  }
+  };
 
-  function deleteBoard(): void {
+  const deleteBoard = (): void => {
     BoardsApi.deleteBoard(boardInfo._id);
     deleteCurrentBoard(boardInfo._id);
-  }
+  };
 
   return (
     <>
@@ -55,6 +55,6 @@ function BoardItem({ boardInfo, deleteCurrentBoard }: Props): ReactElement {
       )}
     </>
   );
-}
+};
 
 export default BoardItem;

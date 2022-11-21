@@ -10,7 +10,7 @@ const styles = `
   }
 `;
 
-function TestRedux(): ReactElement {
+const TestRedux = (): ReactElement => {
   const auth = useAppSelector((state) => state.auth.isAuth);
   const { data, status } = useAppSelector((state) => state.fetch);
   const { counter } = useAppSelector((state) => state.auth);
@@ -56,6 +56,6 @@ function TestRedux(): ReactElement {
       </div>
     </>
   );
-}
+};
 
 export default TestRedux;

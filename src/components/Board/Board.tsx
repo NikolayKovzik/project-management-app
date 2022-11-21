@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 
 import styles from './Board.module.scss';
 
-function Board(): ReactElement {
+const Board = (): ReactElement => {
   return (
     <div className={styles.board}>
       <p className={styles.boardTitleDone}>Done</p>
@@ -50,6 +50,6 @@ function Board(): ReactElement {
       <p className={styles.addItem}>+ Add task</p>
     </div>
   );
-}
+};
 
 export default Board;
