@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable no-underscore-dangle */
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import BoardsApi from 'core/api/BoardsApi';
 import { Board } from 'core/api/models';
@@ -18,7 +18,7 @@ export type Props = {
 };
 
 const BoardItem = ({ boardInfo, deleteCurrentBoard }: Props): ReactElement => {
-  const [modalWindow, setModalWindow] = React.useState(false);
+  const [modalWindow, setModalWindow] = useState(false);
   const boardNumber = boardInfo._id.slice(boardInfo._id.length - 4);
 
   const toggleModalWindow = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {

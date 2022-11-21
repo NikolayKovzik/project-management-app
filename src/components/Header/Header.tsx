@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import languageImage from '../../assets/images/language.png';
@@ -15,9 +15,9 @@ const setActive: SetActiveCallback = (props: SetActiveCallbackProps): string =>
   props.isActive ? 'active' : 'inactive';
 
 const Header = (): ReactElement => {
-  const [auth, setAuth] = React.useState(true);
+  const [auth, setAuth] = useState(true);
 
-  const [navbar, setNavbar] = React.useState(false);
+  const [navbar, setNavbar] = useState(false);
 
   const changeBackground = (): void => {
     if (window.scrollY >= 50) {
@@ -27,7 +27,7 @@ const Header = (): ReactElement => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     changeBackground();
     // adding the event when scroll change Logo
     window.addEventListener('scroll', changeBackground);

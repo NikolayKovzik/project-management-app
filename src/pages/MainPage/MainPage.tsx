@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable no-underscore-dangle */
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import BoardsApi from 'core/api/BoardsApi';
 import { Board } from 'core/api/models';
 
@@ -9,9 +9,9 @@ import BoardItem from 'components/BoardItem/BoardItem';
 import styles from './MainPage.module.scss';
 
 const MainPage = (): ReactElement => {
-  const [data, setData] = React.useState<Board[]>([]);
+  const [data, setData] = useState<Board[]>([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getAllBoards = async (): Promise<void> => {
       const result = await BoardsApi.getAllBoards();
       setData(result.data);
