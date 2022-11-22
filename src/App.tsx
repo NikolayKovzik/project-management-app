@@ -2,7 +2,7 @@
 import React, { ReactElement } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import RequireAuth from 'core/hocs/RequireAuth';
-import BoardsPage from 'pages/BoardsPage/BoardsPage';
+import BoardPage from 'pages/BoardPage/BoardPage';
 import HomePage from 'pages/HomePage/HomePage';
 import MainPage from 'pages/MainPage/MainPage';
 import NotfoundPage from 'pages/NotFoundPage/NotFoundPage';
@@ -27,10 +27,10 @@ const App = (): ReactElement => {
         <Route path="signup" element={<SignUpPage />} />
         <Route path="main" element={<MainPage />} />
         <Route
-          path="/boards"
+          path="/board"
           element={
             <RequireAuth>
-              <BoardsPage />
+              <BoardPage />
             </RequireAuth>
           }
         />

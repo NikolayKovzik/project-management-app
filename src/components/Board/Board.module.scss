@@ -1,36 +1,26 @@
 @import url('../../variables/Variables.module.scss');
 
 .board {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
-  gap: 20px;
-  height: 550px;
-  width: 100%;
+  gap: 10px;
+  height: 100%;
+  width: 370px;
+  min-width: 370px;
   border-radius: 20px;
-  padding: 20px;
+  padding: 10px 20px;
   background: var(--color-darkgray);
   box-sizing: border-box;
 }
 
-.boardTitleDo,
-.boardTitlePro,
-.boardTitleDone {
+.boardTitle {
   font-size: 20px;
   color: var(--color-white);
   font-family: 'Montserrat-Bold';
   text-transform: uppercase;
   text-align: center;
-  padding: 20px;
+  padding: 15px;
   border-radius: 20px;
-}
-
-.boardTitleDo {
-  background: var(--color-purple);
-}
-.boardTitlePro {
-  background: var(--color-orange);
-}
-.boardTitleDone {
   background: var(--color-green);
 }
 
@@ -48,7 +38,7 @@
   height: 100%;
   overflow-y: scroll;
   border-radius: 20px;
-  padding: 20px;
+  padding: 10px;
   background: var(--color-darkpurple);
   box-sizing: border-box;
   box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.9);
@@ -92,7 +82,7 @@
   font-family: 'Montserrat-Bold';
   text-transform: uppercase;
   text-align: center;
-  padding: 10px 20px;
+  padding: 15px;
   border-radius: 20px;
   transition: 0.5s;
   cursor: pointer;
