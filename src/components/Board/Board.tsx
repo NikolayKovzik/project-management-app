@@ -5,7 +5,7 @@ import styles from './Board.module.scss';
 const Board = (): ReactElement => {
   return (
     <div className={styles.board}>
-      <p className={styles.boardTitleDone}>Done</p>
+      <p className={styles.boardTitle}>Board</p>
       <div className={styles.filterContainer}>
         <ul className={styles.boardContainer}>
           <li>

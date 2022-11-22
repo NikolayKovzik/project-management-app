@@ -33,7 +33,7 @@ const BoardItem = ({ boardInfo, deleteCurrentBoard }: Props): ReactElement => {
 
   return (
     <>
-      <NavLink to="/boards">
+      <NavLink to="/board">
         <div className={styles.board}>
           <div className={styles.info}>
             <div className={styles.boardNumber}>
