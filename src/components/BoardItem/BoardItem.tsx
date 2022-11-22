@@ -51,7 +51,11 @@ const BoardItem = ({ boardInfo, deleteCurrentBoard }: Props): ReactElement => {
         </div>
       </NavLink>
       {modalWindow && (
-        <ModalWindow toggleModalWindow={toggleModalWindow} deleteBoard={deleteBoard} />
+        <ModalWindow
+          type="delete"
+          toggleModalWindow={toggleModalWindow}
+          deleteBoard={deleteBoard}
+        />
       )}
     </>
   );
