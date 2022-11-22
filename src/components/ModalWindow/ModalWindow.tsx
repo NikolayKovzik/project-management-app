@@ -2,20 +2,11 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { ReactElement } from 'react';
 
+import CreateModalWindow from './CreateModalWindow/CreateModalWindow';
 import DeleteModalWindow from './DeleteModalWindow/DeleteModalWindow';
+import { Props, TYPES } from './types/ModalWindow.types';
 
 import styles from './ModalWindow.module.scss';
-
-type Props = {
-  toggleModalWindow: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  deleteBoard: () => void;
-  type: string;
-};
-
-const TYPES = {
-  DELETE: 'delete',
-  CREATE: 'create',
-};
 
 const ModalWindow = ({ toggleModalWindow, deleteBoard, type }: Props): ReactElement => {
   const disableClick = (event: { stopPropagation: () => void }): void => {
@@ -32,6 +23,7 @@ const ModalWindow = ({ toggleModalWindow, deleteBoard, type }: Props): ReactElem
         {type === TYPES.DELETE && (
           <DeleteModalWindow deleteBoard={deleteBoard} toggleModalWindow={toggleModalWindow} />
         )}
+        {type === TYPES.CREATE && <CreateModalWindow toggleModalWindow={toggleModalWindow} />}
       </div>
     </button>
   );

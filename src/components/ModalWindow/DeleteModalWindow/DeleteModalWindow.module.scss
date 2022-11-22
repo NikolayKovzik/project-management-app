@@ -1,7 +1,15 @@
+@import url('../../../variables/Variables.module.scss');
+
 .answerImage {
   height: 70px;
   filter: invert(94%) sepia(8%) saturate(4259%) hue-rotate(208deg) brightness(91%) contrast(86%);
   object-fit: contain;
+}
+
+.title {
+  font-size: 24px;
+  font-family: 'Montserrat-Bold';
+  color: var(--color-darkpurple);
 }
 
 .buttonContainer {
