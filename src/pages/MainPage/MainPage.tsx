@@ -2,7 +2,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { ReactElement, useEffect, useState } from 'react';
 import BoardsApi from 'core/api/BoardsApi';
-import { Board, BoardBody } from 'core/api/models';
+import { Board } from 'core/api/models';
 
 import BoardItem from 'components/BoardItem/BoardItem';
 
@@ -17,13 +17,6 @@ const MainPage = (): ReactElement => {
       setData(result.data);
     };
     getAllBoards();
-
-    // const item1: BoardBody = {
-    //   title: 'Rex10',
-    //   owner: 'Kirill',
-    //   users: ['Kirill'],
-    // };
-    // BoardsApi.createBoard(item1);
   }, []);
 
   const deleteCurrentBoard = (id: string): void => {

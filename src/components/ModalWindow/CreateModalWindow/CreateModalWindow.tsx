@@ -1,4 +1,5 @@
 import React, { ReactElement, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BoardsApi from 'core/api/BoardsApi';
 import { BoardBody } from 'core/api/models';
 
@@ -9,6 +10,7 @@ import styles from './CreateModalWindow.module.scss';
 const CreateModalWindow = ({ toggleModalWindow }: Props): ReactElement => {
   const [title, setTitle] = useState('');
   const [owner, setOwner] = useState('');
+  const navigate = useNavigate();
 
   const changeInputTitle = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setTitle(e.target.value);
@@ -25,6 +27,7 @@ const CreateModalWindow = ({ toggleModalWindow }: Props): ReactElement => {
     };
     BoardsApi.createBoard(board);
     toggleModalWindow(e);
+    navigate('/');
   };
 
   return (
