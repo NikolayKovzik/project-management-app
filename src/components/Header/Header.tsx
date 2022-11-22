@@ -70,7 +70,7 @@ const Header = (): ReactElement => {
             )}
             {auth && (
               <li>
-                <NavLink to="/editprofile" className={setActive as SetActiveCallback}>
+                <NavLink to="/profile" className={setActive as SetActiveCallback}>
                   Edit profile
                 </NavLink>
               </li>

@@ -26,7 +26,9 @@ const CreateModalWindow = ({ toggleModalWindow }: Props): ReactElement => {
       users: [],
     };
     BoardsApi.createBoard(board);
-    toggleModalWindow(e);
+    if (toggleModalWindow !== undefined) {
+      toggleModalWindow(e);
+    }
     navigate('/');
   };
 

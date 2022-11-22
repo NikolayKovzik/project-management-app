@@ -6,9 +6,13 @@ import { Props } from '../types/DeleteModalWindow.types';
 import styles from './DeleteModalWindow.module.scss';
 
 const DeleteModalWindow = ({ deleteBoard, toggleModalWindow }: Props): ReactElement => {
-  const deleteItem = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
-    deleteBoard();
-    toggleModalWindow(e);
+  const deleteItem = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void | undefined => {
+    if (deleteBoard !== undefined) {
+      deleteBoard();
+    }
+    if (toggleModalWindow !== undefined) {
+      toggleModalWindow(e);
+    }
   };
 
   return (

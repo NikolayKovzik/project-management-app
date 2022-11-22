@@ -1,3 +1,3 @@
 export type Props = {
-  toggleModalWindow: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  toggleModalWindow?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
