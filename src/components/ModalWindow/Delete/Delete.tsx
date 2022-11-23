@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
 
 import answerImage from '../../../assets/images/answer.png';
-import { Props } from '../types/DeleteModalWindow.types';
+import { Props } from '../types/Delete.types';
 
-import styles from './DeleteModalWindow.module.scss';
+import styles from './Delete.module.scss';
 
-const DeleteModalWindow = ({ deleteBoard, toggleModalWindow }: Props): ReactElement => {
+const Delete = ({ deleteBoard, toggleModalWindow }: Props): ReactElement => {
   const deleteItem = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void | undefined => {
     if (deleteBoard !== undefined) {
       deleteBoard();
@@ -31,4 +31,4 @@ const DeleteModalWindow = ({ deleteBoard, toggleModalWindow }: Props): ReactElem
   );
 };
 
-export default DeleteModalWindow;
+export default Delete;

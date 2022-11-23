@@ -2,8 +2,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { ReactElement } from 'react';
 
-import CreateModalWindow from './CreateModalWindow/CreateModalWindow';
-import DeleteModalWindow from './DeleteModalWindow/DeleteModalWindow';
+import Create from './Create/Create';
+import Delete from './Delete/Delete';
 import { Props, TYPES } from './types/ModalWindow.types';
 
 import styles from './ModalWindow.module.scss';
@@ -32,9 +32,9 @@ const ModalWindow = ({ toggleModalWindow, deleteBoard, type }: Props): ReactElem
           &times;
         </button>
         {type === TYPES.DELETE && (
-          <DeleteModalWindow deleteBoard={deleteBoard} toggleModalWindow={toggleModalWindow} />
+          <Delete deleteBoard={deleteBoard} toggleModalWindow={toggleModalWindow} />
         )}
-        {type === TYPES.CREATE && <CreateModalWindow toggleModalWindow={toggleModalWindow} />}
+        {type === TYPES.CREATE && <Create toggleModalWindow={toggleModalWindow} />}
       </div>
     </button>
   );
