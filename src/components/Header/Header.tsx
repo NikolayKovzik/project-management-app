@@ -26,9 +26,6 @@ const Header = (): ReactElement => {
     event.preventDefault();
     setModalWindow(!modalWindow);
   };
-  const deleteBoard = (): void => {
-    console.log('g');
-  };
 
   const [navbar, setNavbar] = useState(false);
 
@@ -61,11 +58,7 @@ const Header = (): ReactElement => {
                 <NavLink to="/" className={setActive as SetActiveCallback} end>
                   + New board
                   {modalWindow && (
-                    <ModalWindow
-                      type="create"
-                      toggleModalWindow={toggleModalWindow}
-                      deleteBoard={deleteBoard}
-                    />
+                    <ModalWindow type="create" toggleModalWindow={toggleModalWindow} />
                   )}
                 </NavLink>
               </li>

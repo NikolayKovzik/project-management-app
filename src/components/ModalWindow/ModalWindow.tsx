@@ -4,12 +4,18 @@ import React, { ReactElement } from 'react';
 
 import CreateBoard from './CreateBoard/CreateBoard';
 import DeleteBoard from './DeleteBoard/DeleteBoard';
+import DeleteProfile from './DeleteProfile/DeleteProfile';
 import EditProfile from './EditProfile/EditProfile';
 import { Props, TYPES } from './types/ModalWindow.types';
 
 import styles from './ModalWindow.module.scss';
 
-const ModalWindow = ({ toggleModalWindow, deleteBoard, type }: Props): ReactElement => {
+const ModalWindow = ({
+  toggleModalWindow,
+  deleteBoard,
+  deleteProfile,
+  type,
+}: Props): ReactElement => {
   const disableClick = (event: { stopPropagation: () => void }): void => {
     event.stopPropagation();
   };
@@ -37,6 +43,9 @@ const ModalWindow = ({ toggleModalWindow, deleteBoard, type }: Props): ReactElem
         )}
         {type === TYPES.CREATE && <CreateBoard toggleModalWindow={toggleModalWindow} />}
         {type === TYPES.PROFILE && <EditProfile />}
+        {type === TYPES.DELETEPROFILE && (
+          <DeleteProfile deleteProfile={deleteProfile} toggleModalWindow={toggleModalWindow} />
+        )}
       </div>
     </button>
   );

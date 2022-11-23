@@ -15,9 +15,19 @@ const ProfilePage = (): ReactElement => {
     setModalWindow(!modalWindow);
   };
 
+  const deleteProfile = (): void => {
+    console.log('delete profile');
+  };
+
   return (
     <section className={styles.profile}>
-      {modalWindow && <ModalWindow type="delete" toggleModalWindow={toggleModalWindow} />}
+      {modalWindow && (
+        <ModalWindow
+          type="deleteprofile"
+          toggleModalWindow={toggleModalWindow}
+          deleteProfile={deleteProfile}
+        />
+      )}
       <div className="container">
         <div className={styles.container}>
           <div className={styles.mainContainer}>

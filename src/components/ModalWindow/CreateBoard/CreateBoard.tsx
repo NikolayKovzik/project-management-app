@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import BoardsApi from 'core/api/BoardsApi';
 import { BoardBody } from 'core/api/models';
 
-import { Props } from '../types/Create.types';
+import { Props } from '../types/CreateBoard.types';
 
 import styles from './CreateBoard.module.scss';
 
