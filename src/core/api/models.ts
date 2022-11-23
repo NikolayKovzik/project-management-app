@@ -23,7 +23,11 @@ export type Board = {
   users: string[];
 };
 
-export type BoardBody = Omit<Board, '_id'>;
+export type BoardBody = {
+  title: string;
+  owner: string;
+  users: string[];
+};
 
 export type Column = {
   _id: string;
@@ -35,3 +39,18 @@ export type Column = {
 export type ColumnBody = Omit<Column, '_id' | 'boardId'>;
 export type ColumnPostBody = Omit<Column, '_id'>;
 export type ColumnPatchBody = Omit<Column, 'title' | 'boardId'>;
+
+export type Task = {
+  _id: string;
+  title: string;
+  order: number;
+  boardId: string;
+  columnId: string;
+  description: string;
+  userId: string;
+  users: string[];
+};
+
+export type TaskCreateBody = Omit<Task, '_id' | 'boardId' | 'columnId'>;
+export type TaskUpdateBody = Omit<Task, '_id' | 'boardId'>;
+export type TaskUpdateSetBody = Pick<Task, '_id' | 'order' | 'columnId'>;

@@ -25,19 +25,19 @@ class ColumnsApi {
     const res = await ManagerAppApi.get<Column[]>(
       `/columnsSet?ids=${columnIds.join(',')}&userId=${userId}`
     );
-    console.log('resp getColumnsByIdsListOrUserId', res);
+    console.log('resp getColumnsByIdsListAndUserId', res);
     return res;
   }
 
   static async getColumnsByIdsList(columnIds: string[]): Promise<AxiosResponse<Column[]>> {
     const res = await ManagerAppApi.get<Column[]>(`/columnsSet?ids=${columnIds.join(',')}`);
-    console.log('resp getColumnsByIdsListOrUserId', res);
+    console.log('resp getColumnsByIdsList', res);
     return res;
   }
 
   static async getColumnsByUserId(userId: string): Promise<AxiosResponse<Column[]>> {
     const res = await ManagerAppApi.get<Column[]>(`/columnsSet?userId=${userId}`);
-    console.log('resp getColumnsByIdsListOrUserId', res);
+    console.log('resp getColumnsByUserId', res);
     return res;
   }
 

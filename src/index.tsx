@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 import BoardsApi from 'core/api/BoardsApi';
 import ColumnsApi from 'core/api/ColumnsApi';
+import { Board } from 'core/api/models';
+import TasksApi from 'core/api/TasksApi';
 import UsersApi from 'core/api/UsersApi';
 import AuthApi from 'core/rest/AuthApi';
 import store from 'store';
@@ -19,8 +21,7 @@ async function xex(): Promise<void> {
   //   owner: 'somebody',
   //   users: ['rabbit', 'wolf'],
   // });
-  // await BoardsApi.getAllBoards();
-  // await ColumnsApi.getAllColumnsByBoardId('63797a186180495fafca927e');
+  await BoardsApi.getAllBoards();
   // await ColumnsApi.createSetOfColumns([
   //   {
   //     title: 'ONE',
@@ -28,9 +29,57 @@ async function xex(): Promise<void> {
   //     boardId: '63797a186180495fafca927e',
   //   },
   // ]);
+  // await ColumnsApi.getColumnsByUserId('somebody');
+  // await ColumnsApi.getColumnsByUserId('grib');
+  // await ColumnsApi.getAllColumnsByBoardId('63797a186180495fafca927e');
+  // await BoardsApi.getAllBoards();
+  // await ColumnsApi.getColumnsByUserId('somebody');
+  // await TasksApi.createTask('637834e86180495fafca9238', '63797a1a6180495fafca9284', {
+  //   title: 'REVOLUTION',
+  //   order: 0,
+  //   description: 'clean the room',
+  //   userId: 'FUCKER',
+  //   users: ['DUCKER', 'FUCKER'],
+  // });
+  // await TasksApi.createTask('637834e86180495fafca9238', '63797a1a6180495fafca9284', {
+  //   title: 'SOLVE PROBLEM',
+  //   order: 1,
+  //   description: 'solve problem',
+  //   userId: 'DUCKER',
+  //   users: ['MOTHERDUCKER', 'MOTHERFUCKER'],
+  // });
+  // await TasksApi.getTasksInColumn('637834e86180495fafca9238', '63797a1a6180495fafca9284');
+  // await TasksApi.getTasksByBoardId('637834e86180495fafca9238');
+  await TasksApi.getTasksByUserId('idgaf');
+  await TasksApi.updateSetOfTasks([
+    {
+      _id: '637a75556180495fafca9392',
+      order: 228,
+      columnId: 'paraparapam',
+    },
+    {
+      _id: '637a75566180495fafca9395',
+      order: 228,
+      columnId: 'paraparapam',
+    },
+    {
+      _id: '637a78386180495fafca93a4',
+      order: 228,
+      columnId: 'paraparapam',
+    },
+  ]);
+  await TasksApi.getTasksByUserId('idgaf');
 
-  await ColumnsApi.getColumnsByUserId('somebody');
-  await ColumnsApi.getColumnsByUserId('grib');
+  // await TasksApi.getTasksBySearchRequest('123');
+  // await TasksApi.getTasksByIdsListOrByUserIdOrBySearchRequest(
+  //   ['637a75556180495fafca9392', '637a75566180495fafca9395', '637a78386180495fafca93a4'],
+  //   'idgaf'
+  // );
+  // await TasksApi.getTasksByIdsListOrByUserIdOrBySearchRequest(
+  //   ['637a75556180495fafca9392', '637a75566180495fafca9395', '637a78386180495fafca93a4'],
+  //   'idgaf',
+  //   'DUCK'
+  // );
 }
 
 xex();
