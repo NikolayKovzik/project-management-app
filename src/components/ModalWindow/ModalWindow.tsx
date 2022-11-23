@@ -4,6 +4,7 @@ import React, { ReactElement } from 'react';
 
 import Create from './Create/Create';
 import Delete from './Delete/Delete';
+import EditProfile from './EditProfile/EditProfile';
 import { Props, TYPES } from './types/ModalWindow.types';
 
 import styles from './ModalWindow.module.scss';
@@ -35,6 +36,7 @@ const ModalWindow = ({ toggleModalWindow, deleteBoard, type }: Props): ReactElem
           <Delete deleteBoard={deleteBoard} toggleModalWindow={toggleModalWindow} />
         )}
         {type === TYPES.CREATE && <Create toggleModalWindow={toggleModalWindow} />}
+        {type === TYPES.PROFILE && <EditProfile />}
       </div>
     </button>
   );
