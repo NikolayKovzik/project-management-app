@@ -14,10 +14,21 @@ const ModalWindow = ({ toggleModalWindow, deleteBoard, type }: Props): ReactElem
   };
 
   return (
-    <button type="button" className={styles.modalWindow} onClick={toggleModalWindow}>
-      <div className={styles.filter} />
-      <div className={styles.container} onClick={disableClick}>
-        <button type="button" className={styles.closeBtn} onClick={toggleModalWindow}>
+    <button
+      type="button"
+      className={type === TYPES.PROFILE ? styles.modalProfileWindow : styles.modalWindow}
+      onClick={toggleModalWindow}
+    >
+      <div className={type === TYPES.PROFILE ? styles.filterUnActive : styles.filter} />
+      <div
+        className={type === TYPES.PROFILE ? styles.containerProfile : styles.container}
+        onClick={disableClick}
+      >
+        <button
+          type="button"
+          className={type === TYPES.PROFILE ? styles.closeBtnUnActive : styles.closeBtn}
+          onClick={toggleModalWindow}
+        >
           &times;
         </button>
         {type === TYPES.DELETE && (

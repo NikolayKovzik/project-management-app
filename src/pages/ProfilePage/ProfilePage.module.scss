@@ -12,6 +12,49 @@
   min-height: calc(100vh - 145px);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
   gap: 40px;
+}
+
+.profileForm {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  width: 500px;
+  border-radius: 20px;
+  background: var(--color-darkgray);
+}
+
+.mainInfo {
+  display: flex;
+  height: 200px;
+  padding: 40px;
+  gap: 50px;
+
+  img {
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .divider {
+      height: 100%;
+      width: 5px;
+      border-radius: 20px;
+      background: var(--color-purple);
+    }
+
+    p {
+      width: 100px;
+      font-size: 37px;
+      color: var(--color-white);
+      text-transform: uppercase;
+      font-family: 'Montserrat-Bold';
+    }
+  }
 }

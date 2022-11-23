@@ -58,14 +58,16 @@ const Header = (): ReactElement => {
           <ul className={styles.menu}>
             {auth && (
               <li onClick={toggleModalWindow}>
-                + New board
-                {modalWindow && (
-                  <ModalWindow
-                    type="create"
-                    toggleModalWindow={toggleModalWindow}
-                    deleteBoard={deleteBoard}
-                  />
-                )}
+                <NavLink to="/" className={setActive as SetActiveCallback} end>
+                  + New board
+                  {modalWindow && (
+                    <ModalWindow
+                      type="create"
+                      toggleModalWindow={toggleModalWindow}
+                      deleteBoard={deleteBoard}
+                    />
+                  )}
+                </NavLink>
               </li>
             )}
             {auth && (
