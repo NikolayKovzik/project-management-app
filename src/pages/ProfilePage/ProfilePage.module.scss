@@ -58,3 +58,37 @@
     }
   }
 }
+
+.deleteAccount {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    gap: 10px;
+    font-size: 20px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 20px;
+    font-family: 'Montserrat-Bold';
+    text-transform: uppercase;
+    color: var(--color-white);
+    text-transform: uppercase;
+    font-family: 'Montserrat-Bold';
+    background: var(--color-orange);
+    filter: brightness(60%);
+    transition: 0.5s;
+
+    img {
+      height: 80%;
+    }
+  }
+
+  button:hover {
+    filter: brightness(100%);
+  }
+}

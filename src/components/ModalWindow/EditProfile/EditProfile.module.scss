@@ -14,28 +14,28 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 40%;
+    width: 30%;
     font-size: 18px;
     color: var(--color-darkpurple);
   }
 
   input {
+    width: 70%;
     font-family: 'Montserrat-Regular';
     font-size: 16px;
     border: 2px solid var(--color-darkpurple);
     color: var(--color-darkpurple);
     border-radius: 20px;
     padding: 5px 20px;
-    width: 60%;
   }
 
   .password {
     font-family: 'Montserrat-Bold';
-    font-size: 20px;
   }
 }
 
 .saveButton {
+  font-size: 24px;
   font-family: 'Montserrat-Bold';
   text-transform: uppercase;
   color: var(--color-darkpurple);

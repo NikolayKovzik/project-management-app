@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 
 import ModalWindow from 'components/ModalWindow/ModalWindow';
 
+import binImage from '../../assets/images/bin.png';
 import profileImage from '../../assets/images/profile.png';
 
 import styles from './ProfilePage.module.scss';
@@ -23,7 +24,10 @@ const ProfilePage = (): ReactElement => {
               <ModalWindow type="profile" />
             </div>
             <div className={styles.deleteAccount}>
-              <button type="button">Delete Account</button>
+              <button type="button">
+                <img src={binImage} alt="bin" />
+                Delete my account
+              </button>
             </div>
           </div>
         </div>
