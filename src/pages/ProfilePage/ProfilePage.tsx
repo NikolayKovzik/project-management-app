@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 
 import ModalWindow from 'components/ModalWindow/ModalWindow';
 
@@ -8,8 +8,16 @@ import profileImage from '../../assets/images/profile.png';
 import styles from './ProfilePage.module.scss';
 
 const ProfilePage = (): ReactElement => {
+  const [modalWindow, setModalWindow] = useState(false);
+
+  const toggleModalWindow = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+    event.preventDefault();
+    setModalWindow(!modalWindow);
+  };
+
   return (
     <section className={styles.profile}>
+      {modalWindow && <ModalWindow type="delete" toggleModalWindow={toggleModalWindow} />}
       <div className="container">
         <div className={styles.container}>
           <div className={styles.mainContainer}>
@@ -24,7 +32,7 @@ const ProfilePage = (): ReactElement => {
               <ModalWindow type="profile" />
             </div>
             <div className={styles.deleteAccount}>
-              <button type="button">
+              <button type="button" onClick={toggleModalWindow}>
                 <img src={binImage} alt="bin" />
                 Delete my account
               </button>
