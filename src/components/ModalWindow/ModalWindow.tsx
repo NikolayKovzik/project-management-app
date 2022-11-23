@@ -2,8 +2,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { ReactElement } from 'react';
 
-import Create from './Create/Create';
-import Delete from './Delete/Delete';
+import CreateBoard from './CreateBoard/CreateBoard';
+import DeleteBoard from './DeleteBoard/DeleteBoard';
 import EditProfile from './EditProfile/EditProfile';
 import { Props, TYPES } from './types/ModalWindow.types';
 
@@ -33,9 +33,9 @@ const ModalWindow = ({ toggleModalWindow, deleteBoard, type }: Props): ReactElem
           &times;
         </button>
         {type === TYPES.DELETE && (
-          <Delete deleteBoard={deleteBoard} toggleModalWindow={toggleModalWindow} />
+          <DeleteBoard deleteBoard={deleteBoard} toggleModalWindow={toggleModalWindow} />
         )}
-        {type === TYPES.CREATE && <Create toggleModalWindow={toggleModalWindow} />}
+        {type === TYPES.CREATE && <CreateBoard toggleModalWindow={toggleModalWindow} />}
         {type === TYPES.PROFILE && <EditProfile />}
       </div>
     </button>

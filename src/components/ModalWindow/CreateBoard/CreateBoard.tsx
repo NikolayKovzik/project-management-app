@@ -5,9 +5,9 @@ import { BoardBody } from 'core/api/models';
 
 import { Props } from '../types/Create.types';
 
-import styles from './Create.module.scss';
+import styles from './CreateBoard.module.scss';
 
-const Create = ({ toggleModalWindow }: Props): ReactElement => {
+const CreateBoard = ({ toggleModalWindow }: Props): ReactElement => {
   const [title, setTitle] = useState('');
   const [owner, setOwner] = useState('');
   const navigate = useNavigate();
@@ -50,4 +50,4 @@ const Create = ({ toggleModalWindow }: Props): ReactElement => {
   );
 };
 
-export default Create;
+export default CreateBoard;
