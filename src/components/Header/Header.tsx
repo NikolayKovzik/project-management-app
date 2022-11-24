@@ -17,7 +17,7 @@ function Header(): ReactElement {
   const [navbar, setNavbar] = React.useState(false);
 
   const changeBackground = (): void => {
-    // console.log(window.scrollY);
+    console.log(window.scrollY);
     if (window.scrollY >= 50) {
       setNavbar(false);
     } else {

@@ -16,14 +16,12 @@ import App from './App';
 async function xex(): Promise<void> {
   // await AuthApi.signUp({ name: 'Ilo7776', login: 'Ilo7776', password: 'qwerty123' });
   // await AuthApi.signIn({ login: 'Ilo7776', password: 'qwerty123' });
-  // await AuthApi.signUp({ name: 'KEKS', login: 'KEKS', password: 'qwerty123' });
-  // await AuthApi.signIn({ login: 'KEKS', password: 'qwerty123' });
   // const board1 = await BoardsApi.createBoard({
   //   title: 'Board1',
   //   owner: 'somebody',
   //   users: ['rabbit', 'wolf'],
   // });
-  await BoardsApi.getAllBoards();
+  // await BoardsApi.getAllBoards();
   // await ColumnsApi.createSetOfColumns([
   //   {
   //     title: 'ONE',
@@ -63,6 +61,10 @@ async function xex(): Promise<void> {
   //   'idgaf',
   //   'DUCK'
   // );
+  // await AuthApi.signUp({ name: 'bombombom', login: 'bombombom', password: 'qwerty123' });
+  // await AuthApi.signIn({ login: 'bombombom', password: 'qwerty123' });
+
+  await BoardsApi.getAllBoards();
 }
 
 xex();
