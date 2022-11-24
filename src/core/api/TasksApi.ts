@@ -41,12 +41,12 @@ class TasksApi {
     return res;
   }
 
-  static async getTasksBySearchRequest(searchRequest: string): Promise<AxiosResponse<Task[]>> {
-    // TODO why it doesn't work
-    const res = await ManagerAppApi.get<Task[]>(`/tasksSet?search=${searchRequest}`);
-    console.log('resp getTasksBySearchRequest', res);
-    return res;
-  }
+  // static async getTasksBySearchRequest(searchRequest: string): Promise<AxiosResponse<Task[]>> {
+  //   // TODO why it doesn't work
+  //   const res = await ManagerAppApi.get<Task[]>(`/tasksSet?search=${searchRequest}`);
+  //   console.log('resp getTasksBySearchRequest', res);
+  //   return res;
+  // }
 
   // static async getTasksByIdsListOrByUserIdOrBySearchRequest(
   //   // TODO why it doesn't work
@@ -91,7 +91,7 @@ class TasksApi {
 
   static async updateSetOfTasks(newTasks: TaskUpdateSetBody[]): Promise<AxiosResponse<Task[]>> {
     const res = await ManagerAppApi.patch<Task[]>(`/tasksSet`, newTasks);
-    console.log('resp updateTask', res);
+    console.log('resp updateSetOfTasks', res);
     return res;
   }
 

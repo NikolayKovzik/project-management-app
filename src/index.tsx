@@ -16,6 +16,8 @@ import App from './App';
 async function xex(): Promise<void> {
   // await AuthApi.signUp({ name: 'Ilo7776', login: 'Ilo7776', password: 'qwerty123' });
   // await AuthApi.signIn({ login: 'Ilo7776', password: 'qwerty123' });
+  // await AuthApi.signUp({ name: 'KEKS', login: 'KEKS', password: 'qwerty123' });
+  // await AuthApi.signIn({ login: 'KEKS', password: 'qwerty123' });
   // const board1 = await BoardsApi.createBoard({
   //   title: 'Board1',
   //   owner: 'somebody',
@@ -50,26 +52,7 @@ async function xex(): Promise<void> {
   // });
   // await TasksApi.getTasksInColumn('637834e86180495fafca9238', '63797a1a6180495fafca9284');
   // await TasksApi.getTasksByBoardId('637834e86180495fafca9238');
-  await TasksApi.getTasksByUserId('idgaf');
-  await TasksApi.updateSetOfTasks([
-    {
-      _id: '637a75556180495fafca9392',
-      order: 228,
-      columnId: 'paraparapam',
-    },
-    {
-      _id: '637a75566180495fafca9395',
-      order: 228,
-      columnId: 'paraparapam',
-    },
-    {
-      _id: '637a78386180495fafca93a4',
-      order: 228,
-      columnId: 'paraparapam',
-    },
-  ]);
-  await TasksApi.getTasksByUserId('idgaf');
-
+  // await TasksApi.getTasksByUserId('idgaf');
   // await TasksApi.getTasksBySearchRequest('123');
   // await TasksApi.getTasksByIdsListOrByUserIdOrBySearchRequest(
   //   ['637a75556180495fafca9392', '637a75566180495fafca9395', '637a78386180495fafca93a4'],

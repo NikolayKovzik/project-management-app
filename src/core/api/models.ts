@@ -23,11 +23,7 @@ export type Board = {
   users: string[];
 };
 
-export type BoardBody = {
-  title: string;
-  owner: string;
-  users: string[];
-};
+export type BoardBody = Omit<Board, '_id'>;
 
 export type Column = {
   _id: string;
@@ -54,3 +50,11 @@ export type Task = {
 export type TaskCreateBody = Omit<Task, '_id' | 'boardId' | 'columnId'>;
 export type TaskUpdateBody = Omit<Task, '_id' | 'boardId'>;
 export type TaskUpdateSetBody = Pick<Task, '_id' | 'order' | 'columnId'>;
+
+export type File = {
+  _id: string;
+  name: string;
+  taskId: string;
+  boardId: string;
+  path: string;
+};
