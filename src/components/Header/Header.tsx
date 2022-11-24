@@ -1,9 +1,14 @@
-import React, { ReactElement } from 'react';
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { ReactElement, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+
+import ModalWindow from 'components/ModalWindow/ModalWindow';
 
 import languageImage from '../../assets/images/language.png';
 import logo from '../../assets/images/logo.png';
 import signInImg from '../../assets/images/signIn.png';
+import signOutImg from '../../assets/images/signOut.png';
 import signUpImg from '../../assets/images/signUp.png';
 
 import { SetActiveCallback, SetActiveCallbackProps } from './Models';
@@ -13,11 +18,21 @@ import styles from './Header.module.scss';
 const setActive: SetActiveCallback = (props: SetActiveCallbackProps): string =>
   props.isActive ? 'active' : 'inactive';
 
-function Header(): ReactElement {
-  const [navbar, setNavbar] = React.useState(false);
+const Header = (): ReactElement => {
+  const [auth, setAuth] = useState(true);
+
+  const [modalWindow, setModalWindow] = useState(false);
+  const toggleModalWindow = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+    event.preventDefault();
+    setModalWindow(!modalWindow);
+  };
+  const deleteBoard = (): void => {
+    console.log('g');
+  };
+
+  const [navbar, setNavbar] = useState(false);
 
   const changeBackground = (): void => {
-    console.log(window.scrollY);
     if (window.scrollY >= 50) {
       setNavbar(false);
     } else {
@@ -25,7 +40,7 @@ function Header(): ReactElement {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     changeBackground();
     // adding the event when scroll change Logo
     window.addEventListener('scroll', changeBackground);
@@ -41,11 +56,33 @@ function Header(): ReactElement {
             </NavLink>
           </div>
           <ul className={styles.menu}>
-            <li>
-              <NavLink to="/boards" className={setActive as SetActiveCallback}>
-                Boards
-              </NavLink>
-            </li>
+            {auth && (
+              <li onClick={toggleModalWindow}>
+                + New board
+                {modalWindow && (
+                  <ModalWindow
+                    type="create"
+                    toggleModalWindow={toggleModalWindow}
+                    deleteBoard={deleteBoard}
+                  />
+                )}
+              </li>
+            )}
+            {auth && (
+              <li>
+                <NavLink to="/editprofile" className={setActive as SetActiveCallback}>
+                  Edit profile
+                </NavLink>
+              </li>
+            )}
+            {auth && (
+              <li>
+                <NavLink to="/main" className={setActive as SetActiveCallback}>
+                  Main page
+                </NavLink>
+              </li>
+            )}
+
             <li className={styles.box}>
               <img src={languageImage} alt="language" />
               <select>
@@ -53,23 +90,38 @@ function Header(): ReactElement {
                 <option>Ru</option>
               </select>
             </li>
-            <li className={styles.itemSignIn}>
-              <NavLink to="/signin" className={setActive as SetActiveCallback}>
-                <img src={signInImg} alt="sign-in" />
-                Sign In
-              </NavLink>
-            </li>
-            <li className={styles.itemSignUp}>
-              <NavLink to="/signup" className={setActive as SetActiveCallback}>
-                <img src={signUpImg} alt="sign-up" />
-                Sign Up
-              </NavLink>
-            </li>
+
+            {auth && (
+              <li className={styles.itemSignOut}>
+                <NavLink to="/" className={setActive as SetActiveCallback}>
+                  <img src={signOutImg} alt="sign-out" />
+                  Sign out
+                </NavLink>
+              </li>
+            )}
+
+            {!auth && (
+              <li className={styles.itemSignIn}>
+                <NavLink to="/signin" className={setActive as SetActiveCallback}>
+                  <img src={signInImg} alt="sign-in" />
+                  Sign In
+                </NavLink>
+              </li>
+            )}
+
+            {!auth && (
+              <li className={styles.itemSignUp}>
+                <NavLink to="/signup" className={setActive as SetActiveCallback}>
+                  <img src={signUpImg} alt="sign-up" />
+                  Sign Up
+                </NavLink>
+              </li>
+            )}
           </ul>
         </div>
       </div>
     </header>
   );
-}
+};
 
 export default Header;

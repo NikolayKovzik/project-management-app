@@ -5,7 +5,7 @@ import mainImage from '../../assets/images/kanaban.png';
 
 import styles from './HomePage.module.scss';
 
-function HomePage(): ReactElement {
+const HomePage = (): ReactElement => {
   const todos = useAppSelector((state) => state.todos.list);
   const dispatch = useAppDispatch();
   return (
@@ -41,6 +41,6 @@ function HomePage(): ReactElement {
       </div>
     </section>
   );
-}
+};
 
 export default HomePage;

@@ -1,50 +1,34 @@
 @import url('../../variables/Variables.module.scss');
 
-.boards {
-  background: var(--color-darkpurple);
-}
-
-.container {
-  padding: 40px 0;
-}
-
-.mainContainer {
-  min-height: calc(100vh - 145px);
-  display: flex;
-  gap: 40px;
-}
-
 .board {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
-  gap: 20px;
-  width: 100%;
+  gap: 10px;
+  height: 100%;
+  width: 370px;
+  min-width: 370px;
   border-radius: 20px;
-  padding: 20px;
+  padding: 10px 20px;
   background: var(--color-darkgray);
   box-sizing: border-box;
 }
 
-.boardTitleDo,
-.boardTitlePro,
-.boardTitleDone {
+.boardTitle {
   font-size: 20px;
   color: var(--color-white);
   font-family: 'Montserrat-Bold';
   text-transform: uppercase;
   text-align: center;
-  padding: 20px;
+  padding: 15px;
   border-radius: 20px;
+  background: var(--color-green);
 }
 
-.boardTitleDo {
-  background: var(--color-purple);
-}
-.boardTitlePro {
-  background: var(--color-orange);
-}
-.boardTitleDone {
-  background: var(--color-green);
+.filterContainer {
+  height: 100%;
+  overflow-y: hidden;
+  border-radius: 20px;
+  position: relative;
 }
 
 .boardContainer {
@@ -52,10 +36,13 @@
   flex-direction: column;
   gap: 10px;
   height: 100%;
+  overflow-y: scroll;
   border-radius: 20px;
-  padding: 20px;
+  padding: 10px;
   background: var(--color-darkpurple);
   box-sizing: border-box;
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.9);
+  cursor: pointer;
 
   li {
     display: flex;
@@ -67,7 +54,12 @@
     color: var(--color-white);
     font-family: 'Montserrat-Regular';
     background: var(--color-darkgray);
+    transition: 0.5s;
     box-sizing: border-box;
+  }
+
+  li:hover {
+    background: var(--color-purple);
   }
 
   .deleteBtn {
@@ -82,4 +74,20 @@
   .deleteBtn:hover {
     filter: brightness(80%);
   }
+}
+
+.addItem {
+  font-size: 20px;
+  color: var(--color-white);
+  font-family: 'Montserrat-Bold';
+  text-transform: uppercase;
+  text-align: center;
+  padding: 15px;
+  border-radius: 20px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.addItem:hover {
+  background: var(--color-darkpurple);
 }
