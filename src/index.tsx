@@ -3,13 +3,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
-
 import BoardsApi from 'core/api/BoardsApi';
 import ColumnsApi from 'core/api/ColumnsApi';
 import { Board } from 'core/api/models';
 import TasksApi from 'core/api/TasksApi';
 import UsersApi from 'core/api/UsersApi';
-
 import AuthApi from 'core/rest/AuthApi';
 import store from 'store';
 
@@ -67,7 +65,7 @@ const xex = async (): Promise<void> => {
   // await AuthApi.signIn({ login: 'bombombom', password: 'qwerty123' });
 
   await BoardsApi.getAllBoards();
-}
+};
 
 xex();
 
