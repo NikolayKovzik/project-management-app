@@ -18,13 +18,13 @@ class BoardsApi {
     return res;
   }
 
-  static async getBoardsSet(boardSet: string[]): Promise<AxiosResponse<Board[]>> {
+  static async getBoardsSetByIdsList(boardSet: string[]): Promise<AxiosResponse<Board[]>> {
     const res = await ManagerAppApi.get<Board[]>(`/boardsSet?ids=${boardSet.join(',')}`);
     console.log('resp getBoardsSet', res);
     return res;
   }
 
-  static async getAllUserBoards(userId: string): Promise<AxiosResponse<Board[]>> {
+  static async getBoardsSetByUserId(userId: string): Promise<AxiosResponse<Board[]>> {
     const res = await ManagerAppApi.get<Board[]>(`/boardsSet/${userId}`);
     console.log('resp getAllUserBoards', res);
     return res;
