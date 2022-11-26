@@ -10,7 +10,7 @@ import styles from './BoardPage.module.scss';
 
 const BoardPage = (): ReactElement => {
   const [modalWindow, setModalWindow] = useState(false);
-  const [boards, setBoards] = useState([1]);
+  const [boards, setBoards] = useState<ColumnBody[]>([{ title: 'create', order: 1 }]);
   const params = useParams();
 
   const toggleModalWindow = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
@@ -23,7 +23,7 @@ const BoardPage = (): ReactElement => {
     // ColumnsApi.createColumn('1', column);
     // navigate('/');
     setBoards((prevState) => {
-      return [...prevState, 1];
+      return [...prevState, column];
     });
     setModalWindow(!modalWindow);
   };
@@ -36,8 +36,8 @@ const BoardPage = (): ReactElement => {
             <button type="button">&#5130;</button>
           </NavLink>
           <div className={styles.mainContainer}>
-            {boards.map(() => (
-              <Board boardId={String(params.id)} />
+            {boards.map((board: ColumnBody) => (
+              <Board boardId={String(params.id)} board={board} />
             ))}
             <div className={styles.addButton}>
               <div className={styles.buttonAddContainer}>
