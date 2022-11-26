@@ -15,7 +15,7 @@ import App from './App';
 
 const xex = async (): Promise<void> => {
   // await AuthApi.signUp({ name: 'Ilo7776', login: 'Ilo7776', password: 'qwerty123' });
-  // await AuthApi.signIn({ login: 'Ilo7776', password: 'qwerty123' });
+  await AuthApi.signIn({ login: 'Ilo7776', password: 'qwerty123' });
   // const board1 = await BoardsApi.createBoard({
   //   title: 'Board1',
   //   owner: 'somebody',

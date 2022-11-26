@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { ReactElement } from 'react';
 
+import AddColumn from './AddColumn/AddColumn';
 import CreateBoard from './CreateBoard/CreateBoard';
 import DeleteBoard from './DeleteBoard/DeleteBoard';
 import DeleteProfile from './DeleteProfile/DeleteProfile';
@@ -14,6 +15,7 @@ const ModalWindow = ({
   toggleModalWindow,
   deleteBoard,
   deleteProfile,
+  createColumn,
   type,
 }: Props): ReactElement => {
   const disableClick = (event: { stopPropagation: () => void }): void => {
@@ -46,6 +48,7 @@ const ModalWindow = ({
         {type === TYPES.DELETEPROFILE && (
           <DeleteProfile deleteProfile={deleteProfile} toggleModalWindow={toggleModalWindow} />
         )}
+        {type === TYPES.CREATECOLUMN && <AddColumn createColumn={createColumn} />}
       </div>
     </button>
   );

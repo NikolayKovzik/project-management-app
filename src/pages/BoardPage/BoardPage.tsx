@@ -1,11 +1,33 @@
-import React, { ReactElement } from 'react';
-import { NavLink } from 'react-router-dom';
+/* eslint-disable react-hooks/rules-of-hooks */
+import React, { ReactElement, useState } from 'react';
+import { NavLink, useParams } from 'react-router-dom';
+import { ColumnBody } from 'core/api/models';
 
 import Board from 'components/Board/Board';
+import ModalWindow from 'components/ModalWindow/ModalWindow';
 
 import styles from './BoardPage.module.scss';
 
 const BoardPage = (): ReactElement => {
+  const [modalWindow, setModalWindow] = useState(false);
+  const [boards, setBoards] = useState<ColumnBody[]>([{ title: 'create', order: 1 }]);
+  const params = useParams();
+
+  const toggleModalWindow = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+    event.preventDefault();
+    setModalWindow(!modalWindow);
+  };
+
+  const createColumn = (column: ColumnBody): void => {
+    console.log(column);
+    // ColumnsApi.createColumn('1', column);
+    // navigate('/');
+    setBoards((prevState) => {
+      return [...prevState, column];
+    });
+    setModalWindow(!modalWindow);
+  };
+
   return (
     <section className={styles.boards}>
       <div className="container">
@@ -14,13 +36,23 @@ const BoardPage = (): ReactElement => {
             <button type="button">&#5130;</button>
           </NavLink>
           <div className={styles.mainContainer}>
-            <Board />
-            <Board />
-            <Board />
-            <Board />
+            {boards.map((board: ColumnBody) => (
+              <Board boardId={String(params.id)} board={board} />
+            ))}
             <div className={styles.addButton}>
               <div className={styles.buttonAddContainer}>
-                <button className={styles.addColumnButton} type="button">
+                <button
+                  className={styles.addColumnButton}
+                  type="button"
+                  onClick={toggleModalWindow}
+                >
+                  {modalWindow && (
+                    <ModalWindow
+                      type="createcolumn"
+                      toggleModalWindow={toggleModalWindow}
+                      createColumn={createColumn}
+                    />
+                  )}
                   + Add column
                 </button>
               </div>
