@@ -1,7 +1,6 @@
 /* eslint-disable import/no-unresolved */
 import React, { ReactElement } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import RequireAuth from 'core/hocs/RequireAuth';
 import BoardPage from 'pages/BoardPage/BoardPage';
 import HomePage from 'pages/HomePage/HomePage';
 import MainPage from 'pages/MainPage/MainPage';
@@ -28,14 +27,8 @@ const App = (): ReactElement => {
         <Route path="signup" element={<SignUpPage />} />
         <Route path="profile" element={<ProfilePage />} />
         <Route path="main" element={<MainPage />} />
-        <Route
-          path="/board"
-          element={
-            <RequireAuth>
-              <BoardPage />
-            </RequireAuth>
-          }
-        />
+        <Route path="board" element={<BoardPage />} />
+        <Route path="board/:id" element={<BoardPage />} />
 
         <Route path="*" element={<NotfoundPage />} />
       </Route>

@@ -2,10 +2,14 @@ import React, { ReactElement } from 'react';
 
 import styles from './Board.module.scss';
 
-const Board = (): ReactElement => {
+type Props = {
+  boardId: string;
+};
+
+const Board = ({ boardId }: Props): ReactElement => {
   return (
     <div className={styles.board}>
-      <p className={styles.boardTitle}>Board</p>
+      <p className={styles.boardTitle}>{boardId}</p>
       <div className={styles.filterContainer}>
         <ul className={styles.boardContainer}>
           <li>
