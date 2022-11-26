@@ -2,28 +2,50 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { ReactElement } from 'react';
 
-import CreateModalWindow from './CreateModalWindow/CreateModalWindow';
-import DeleteModalWindow from './DeleteModalWindow/DeleteModalWindow';
+import CreateBoard from './CreateBoard/CreateBoard';
+import DeleteBoard from './DeleteBoard/DeleteBoard';
+import DeleteProfile from './DeleteProfile/DeleteProfile';
+import EditProfile from './EditProfile/EditProfile';
 import { Props, TYPES } from './types/ModalWindow.types';
 
 import styles from './ModalWindow.module.scss';
 
-const ModalWindow = ({ toggleModalWindow, deleteBoard, type }: Props): ReactElement => {
+const ModalWindow = ({
+  toggleModalWindow,
+  deleteBoard,
+  deleteProfile,
+  type,
+}: Props): ReactElement => {
   const disableClick = (event: { stopPropagation: () => void }): void => {
     event.stopPropagation();
   };
 
   return (
-    <button type="button" className={styles.modalWindow} onClick={toggleModalWindow}>
-      <div className={styles.filter} />
-      <div className={styles.container} onClick={disableClick}>
-        <button type="button" className={styles.closeBtn} onClick={toggleModalWindow}>
+    <button
+      type="button"
+      className={type === TYPES.PROFILE ? styles.modalProfileWindow : styles.modalWindow}
+      onClick={toggleModalWindow}
+    >
+      <div className={type === TYPES.PROFILE ? styles.filterUnActive : styles.filter} />
+      <div
+        className={type === TYPES.PROFILE ? styles.containerProfile : styles.container}
+        onClick={disableClick}
+      >
+        <button
+          type="button"
+          className={type === TYPES.PROFILE ? styles.closeBtnUnActive : styles.closeBtn}
+          onClick={toggleModalWindow}
+        >
           &times;
         </button>
         {type === TYPES.DELETE && (
-          <DeleteModalWindow deleteBoard={deleteBoard} toggleModalWindow={toggleModalWindow} />
+          <DeleteBoard deleteBoard={deleteBoard} toggleModalWindow={toggleModalWindow} />
         )}
-        {type === TYPES.CREATE && <CreateModalWindow toggleModalWindow={toggleModalWindow} />}
+        {type === TYPES.CREATE && <CreateBoard toggleModalWindow={toggleModalWindow} />}
+        {type === TYPES.PROFILE && <EditProfile />}
+        {type === TYPES.DELETEPROFILE && (
+          <DeleteProfile deleteProfile={deleteProfile} toggleModalWindow={toggleModalWindow} />
+        )}
       </div>
     </button>
   );

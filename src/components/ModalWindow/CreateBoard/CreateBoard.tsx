@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import BoardsApi from 'core/api/BoardsApi';
 import { BoardBody } from 'core/api/models';
 
-import { Props } from '../types/CreateModalWindow.types';
+import { Props } from '../types/CreateBoard.types';
 
-import styles from './CreateModalWindow.module.scss';
+import styles from './CreateBoard.module.scss';
 
-const CreateModalWindow = ({ toggleModalWindow }: Props): ReactElement => {
+const CreateBoard = ({ toggleModalWindow }: Props): ReactElement => {
   const [title, setTitle] = useState('');
   const [owner, setOwner] = useState('');
   const navigate = useNavigate();
@@ -26,7 +26,9 @@ const CreateModalWindow = ({ toggleModalWindow }: Props): ReactElement => {
       users: [],
     };
     BoardsApi.createBoard(board);
-    toggleModalWindow(e);
+    if (toggleModalWindow !== undefined) {
+      toggleModalWindow(e);
+    }
     navigate('/');
   };
 
@@ -48,4 +50,4 @@ const CreateModalWindow = ({ toggleModalWindow }: Props): ReactElement => {
   );
 };
 
-export default CreateModalWindow;
+export default CreateBoard;

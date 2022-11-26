@@ -26,9 +26,6 @@ const Header = (): ReactElement => {
     event.preventDefault();
     setModalWindow(!modalWindow);
   };
-  const deleteBoard = (): void => {
-    console.log('g');
-  };
 
   const [navbar, setNavbar] = useState(false);
 
@@ -58,19 +55,17 @@ const Header = (): ReactElement => {
           <ul className={styles.menu}>
             {auth && (
               <li onClick={toggleModalWindow}>
-                + New board
-                {modalWindow && (
-                  <ModalWindow
-                    type="create"
-                    toggleModalWindow={toggleModalWindow}
-                    deleteBoard={deleteBoard}
-                  />
-                )}
+                <NavLink to="/" className={setActive as SetActiveCallback} end>
+                  + New board
+                  {modalWindow && (
+                    <ModalWindow type="create" toggleModalWindow={toggleModalWindow} />
+                  )}
+                </NavLink>
               </li>
             )}
             {auth && (
               <li>
-                <NavLink to="/editprofile" className={setActive as SetActiveCallback}>
+                <NavLink to="/profile" className={setActive as SetActiveCallback}>
                   Edit profile
                 </NavLink>
               </li>

@@ -1,14 +1,18 @@
 import React, { ReactElement } from 'react';
 
 import answerImage from '../../../assets/images/answer.png';
-import { Props } from '../types/DeleteModalWindow.types';
+import { Props } from '../types/DeleteBoard.types';
 
-import styles from './DeleteModalWindow.module.scss';
+import styles from './DeleteBoard.module.scss';
 
-const DeleteModalWindow = ({ deleteBoard, toggleModalWindow }: Props): ReactElement => {
-  const deleteItem = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
-    deleteBoard();
-    toggleModalWindow(e);
+const DeleteBoard = ({ deleteBoard, toggleModalWindow }: Props): ReactElement => {
+  const deleteItem = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void | undefined => {
+    if (deleteBoard !== undefined) {
+      deleteBoard();
+    }
+    if (toggleModalWindow !== undefined) {
+      toggleModalWindow(e);
+    }
   };
 
   return (
@@ -27,4 +31,4 @@ const DeleteModalWindow = ({ deleteBoard, toggleModalWindow }: Props): ReactElem
   );
 };
 
-export default DeleteModalWindow;
+export default DeleteBoard;

@@ -6,6 +6,7 @@ import BoardPage from 'pages/BoardPage/BoardPage';
 import HomePage from 'pages/HomePage/HomePage';
 import MainPage from 'pages/MainPage/MainPage';
 import NotfoundPage from 'pages/NotFoundPage/NotFoundPage';
+import ProfilePage from 'pages/ProfilePage/ProfilePage';
 import LoginPage from 'pages/SignInPage/SignInPage';
 import SignUpPage from 'pages/SignUpPage/SignUpPage';
 import TestRedux from 'TempRedux';
@@ -25,6 +26,7 @@ const App = (): ReactElement => {
         <Route path="test" element={<TestRedux />} />
         <Route path="signin" element={<LoginPage />} />
         <Route path="signup" element={<SignUpPage />} />
+        <Route path="profile" element={<ProfilePage />} />
         <Route path="main" element={<MainPage />} />
         <Route
           path="/board"
