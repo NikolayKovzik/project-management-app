@@ -1,20 +1,32 @@
 import React, { ReactElement } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'store';
+import { sendLoginRequest } from 'store/authSlice';
 
 import signImage from '../../assets/images/authorization.png';
 
 import styles from './SignInPage.module.scss';
 
 const LoginPage = (): ReactElement => {
-  const { state } = useLocation();
+  // const { state } = useLocation();
+  const navState = useLocation().state;
   const navigate = useNavigate();
+  //* REDUX using
+  const { message, status } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+  // ***
+  const prevLocation = navState?.from || '';
 
-  const prevLocation = state?.from || '';
+  const submit = (): void => {
+    //*  REDUX THUNK using
+    dispatch(sendLoginRequest({ login: '123123', password: '123123' }));
+    // ***
+  };
 
   const handleSuccessSubmit = (): void => {
     // TODO redux global state isAuth = thue
-    if (state.from) {
-      navigate(state.from);
+    if (navState.from) {
+      navigate(navState.from);
     } else navigate('/');
   };
 
@@ -31,6 +43,10 @@ const LoginPage = (): ReactElement => {
                 <button type="button" className={styles.signUpBtn}>
                   Log in
                 </button>
+                {/* Redux using */}
+                {status === 'failed' && <p>{message}</p>}
+                {status === 'pending' && <p>Loading...</p>}
+                {/* *** */}
                 <Link className={styles.helpBtn} to="/signup">
                   I haven`t account
                 </Link>

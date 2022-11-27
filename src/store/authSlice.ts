@@ -1,30 +1,73 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+/* eslint-disable no-param-reassign */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
+import { UserLoginData, UserRegistrationData } from 'core/api/models';
+import AuthApi from 'core/rest/AuthApi';
+
+import isExpiredToken from './utils';
 
 type AuthState = {
   isAuth: boolean;
-  counter: number;
+  message: string | null;
+  status: 'idle' | 'pending' | 'succeeded' | 'failed';
 };
 
 const initialState: AuthState = {
   isAuth: false,
-  counter: 0,
+  status: 'idle',
+  message: null,
 };
+
+export const sendLoginRequest = createAsyncThunk('auth/login', async (userData: UserLoginData) => {
+  const response = await AuthApi.signIn(userData);
+  return response;
+});
+export const sendRegisterRequest = createAsyncThunk(
+  'fetch/fetchTodo',
+  async (userData: UserRegistrationData) => {
+    const response = await AuthApi.signUp(userData);
+    return response;
+  }
+);
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    changeAuthStatus(state, action: PayloadAction<boolean>) {
-      // eslint-disable-next-line no-param-reassign
+    changeAuthStatus(state: AuthState, action: PayloadAction<boolean>) {
       state.isAuth = action.payload;
     },
-    increment(state) {
-      // eslint-disable-next-line no-param-reassign
-      state.counter += 1;
+    checkAuth(state: AuthState) {
+      const token = localStorage.getItem('project-management-app-token');
+      if (!token || isExpiredToken()) {
+        state.isAuth = false;
+      }
+      if (token && !isExpiredToken()) {
+        state.isAuth = true;
+      }
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(sendLoginRequest.pending, (state) => {
+        state.status = 'pending';
+      })
+      .addCase(sendLoginRequest.fulfilled, (state, action) => {
+        if (action.payload.status === 200) {
+          state.isAuth = true;
+        }
+        state.status = 'succeeded';
+      })
+      .addCase(sendLoginRequest.rejected, (state, action) => {
+        if (action.payload instanceof AxiosError) {
+          state.message = action.payload.message;
+        }
+        state.status = 'failed';
+      });
   },
 });
 
-export const { changeAuthStatus, increment } = authSlice.actions;
+export const { changeAuthStatus } = authSlice.actions;
 
 export default authSlice.reducer;

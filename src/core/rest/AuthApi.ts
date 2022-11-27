@@ -4,18 +4,28 @@ import { AuthToken, User, UserLoginData, UserRegistrationData } from '../api/mod
 
 import ManagerAppApi from './RestService';
 
+export const TOKEN_LIFETIME = 43200000;
+
 class AuthApi {
   static async signUp(userData: UserRegistrationData): Promise<AxiosResponse<User>> {
-    const res = await ManagerAppApi.post<User>(`/auth/signup`, userData);
-    console.log('resp signUp', res);
+    const res = await ManagerAppApi.post<User>(`/auth/signup`, userData); //  registration
+    // console.log('resp signUp', res);
+    if (+res.status === 200) {
+      const { login, password } = userData;
+      this.signIn({ login, password });
+    }
     return res;
   }
 
   static async signIn(userData: UserLoginData): Promise<AxiosResponse<AuthToken>> {
     const res = await ManagerAppApi.post<AuthToken>(`/auth/signin`, userData);
-    console.log('resp signIn', res);
-    console.log(localStorage.getItem('project-management-app-token'));
-    localStorage.setItem('project-management-app-token', res.data.token);
+    // console.log('resp signIn', res);
+    // console.log(localStorage.getItem('project-management-app-token'));
+    if (+res.status === 200 && res.data.token) {
+      localStorage.setItem('project-management-app-token', res.data.token);
+      const time = `${new Date().getTime()}`;
+      localStorage.setItem('token-created', time);
+    }
     return res;
   }
 }
