@@ -1,31 +1,37 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { ReactElement, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
-import { ColumnBody } from 'core/api/models';
+import { ColumnPostBody } from 'core/api/models';
 
-import Board from 'components/Board/Board';
+import Column from 'components/Column/Column';
 import ModalWindow from 'components/ModalWindow/ModalWindow';
 
 import styles from './BoardPage.module.scss';
 
 const BoardPage = (): ReactElement => {
   const [modalWindow, setModalWindow] = useState(false);
-  const [boards, setBoards] = useState<ColumnBody[]>([{ title: 'create', order: 1 }]);
   const params = useParams();
+  const [columns, setColumns] = useState<ColumnPostBody[]>([
+    { title: 'create', order: 1, boardId: String(params.id) },
+  ]);
 
   const toggleModalWindow = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
     event.preventDefault();
     setModalWindow(!modalWindow);
   };
 
-  const createColumn = (column: ColumnBody): void => {
+  const createColumn = (column: ColumnPostBody): void => {
     console.log(column);
     // ColumnsApi.createColumn('1', column);
     // navigate('/');
-    setBoards((prevState) => {
+    setColumns((prevState) => {
       return [...prevState, column];
     });
     setModalWindow(!modalWindow);
+  };
+
+  const deleteColumn = (id: string): void => {
+    setColumns(columns.filter((column) => column.boardId !== id));
   };
 
   return (
@@ -36,8 +42,8 @@ const BoardPage = (): ReactElement => {
             <button type="button">&#5130;</button>
           </NavLink>
           <div className={styles.mainContainer}>
-            {boards.map((board: ColumnBody) => (
-              <Board boardId={String(params.id)} board={board} />
+            {columns.map((column: ColumnPostBody) => (
+              <Column boardId={String(params.id)} column={column} deleteColumn={deleteColumn} />
             ))}
             <div className={styles.addButton}>
               <div className={styles.buttonAddContainer}>
