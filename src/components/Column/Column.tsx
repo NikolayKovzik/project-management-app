@@ -1,5 +1,6 @@
+/* eslint-disable no-underscore-dangle */
 import React, { ReactElement, useState } from 'react';
-import { ColumnPostBody, TaskCreateBody } from 'core/api/models';
+import { ColumnPostBody, Task } from 'core/api/models';
 
 import ModalWindow from 'components/ModalWindow/ModalWindow';
 
@@ -14,32 +15,47 @@ type Props = {
 };
 
 const Column = ({ boardId, column, deleteColumn }: Props): ReactElement => {
-  const [tasks, setTasks] = useState<TaskCreateBody[]>([
+  const [tasks, setTasks] = useState<Task[]>([
     {
+      _id: String(Math.random() * 1000),
       title: 'TaskOne',
       order: 0,
+      boardId: '',
+      columnId: '',
       description: 'Today',
       userId: '',
       users: [],
     },
   ]);
+  const [deleteId, setDeleteId] = useState('');
   const [modalWindow, setModalWindow] = useState(false);
-  const [modalDeleteWindow, setModalDeleteWindow] = useState(false);
+  const [modalDeleteColumnWindow, setModalDeleteColumnWindow] = useState(false);
+  const [modalDeleteTaskWindow, setModalDeleteTaskWindow] = useState(false);
 
   const toggleModalWindow = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
     event.preventDefault();
     setModalWindow(!modalWindow);
   };
-  const toggleDeleteModalWindow = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+  const toggleDeleteColumnModalWindow = (
+    event: React.MouseEvent<HTMLElement, MouseEvent>
+  ): void => {
     event.preventDefault();
-    setModalDeleteWindow(!modalDeleteWindow);
+    setModalDeleteColumnWindow(!modalDeleteColumnWindow);
+  };
+  const toggleDeleteTaskModalWindow = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+    event.preventDefault();
+    setModalDeleteTaskWindow(!modalDeleteTaskWindow);
   };
 
-  const createTask = (task: TaskCreateBody): void => {
+  const createTask = (task: Task): void => {
     setTasks((prevState) => {
       return [...prevState, task];
     });
     setModalWindow(!modalWindow);
+  };
+
+  const deleteCurrentTask = (): void => {
+    setTasks(tasks.filter((task) => task._id !== deleteId));
   };
 
   const deleteCurrentColumn = (): void => {
@@ -48,17 +64,24 @@ const Column = ({ boardId, column, deleteColumn }: Props): ReactElement => {
 
   return (
     <>
-      {modalDeleteWindow && (
+      {modalDeleteColumnWindow && (
         <ModalWindow
           type="deletecolumn"
-          toggleModalWindow={toggleDeleteModalWindow}
+          toggleModalWindow={toggleDeleteColumnModalWindow}
           deleteCurrentColumn={deleteCurrentColumn}
+        />
+      )}
+      {modalDeleteTaskWindow && (
+        <ModalWindow
+          type="deletetask"
+          toggleModalWindow={toggleDeleteTaskModalWindow}
+          deleteCurrentTask={deleteCurrentTask}
         />
       )}
       <div className={styles.board}>
         <div className={styles.boardTitle}>
           <p>{column.title}</p>
-          <button type="button" onClick={toggleDeleteModalWindow}>
+          <button type="button" onClick={toggleDeleteColumnModalWindow}>
             <img src={binImage} alt="bin" />
           </button>
         </div>
@@ -68,7 +91,14 @@ const Column = ({ boardId, column, deleteColumn }: Props): ReactElement => {
             {tasks.map((elem) => (
               <li>
                 <p>{elem.title}</p>
-                <button type="button" className={styles.deleteBtn}>
+                <button
+                  type="button"
+                  className={styles.deleteBtn}
+                  onClick={(event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+                    setDeleteId(elem._id);
+                    toggleDeleteTaskModalWindow(event);
+                  }}
+                >
                   &#10006;
                 </button>
               </li>

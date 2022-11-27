@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react';
-import { TaskCreateBody } from 'core/api/models';
+import { Task } from 'core/api/models';
 
 import { Props } from '../types/AddTask.types';
 
@@ -17,9 +17,12 @@ const AddTask = ({ toggleModalWindow, createTask }: Props): ReactElement => {
   };
 
   const addTask = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
-    const task: TaskCreateBody = {
+    const task: Task = {
+      _id: String(Math.random() * 1000),
       title,
       order: 0,
+      boardId: '',
+      columnId: '',
       description,
       userId: '',
       users: [],
