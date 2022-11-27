@@ -1,12 +1,13 @@
-import { ColumnPostBody, TaskCreateBody } from 'core/api/models';
+import { ColumnPostBody, Task } from 'core/api/models';
 
 type Props = {
   toggleModalWindow?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   deleteBoard?: () => void;
   deleteProfile?: () => void;
   deleteCurrentColumn?: () => void;
+  deleteCurrentTask?: () => void;
   createColumn?: (column: ColumnPostBody) => void;
-  createTask?: (task: TaskCreateBody) => void;
+  createTask?: (task: Task) => void;
   type?: string;
 };
 
@@ -18,6 +19,7 @@ const TYPES = {
   DELETECOLUMN: 'deletecolumn',
   CREATECOLUMN: 'createcolumn',
   CREATETASK: 'createtask',
+  DELETETASK: 'deletetask',
 };
 
 export { Props, TYPES };
