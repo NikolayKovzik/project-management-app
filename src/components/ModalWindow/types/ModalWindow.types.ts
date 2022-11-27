@@ -4,6 +4,7 @@ type Props = {
   toggleModalWindow?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   deleteBoard?: () => void;
   deleteProfile?: () => void;
+  deleteCurrentColumn?: () => void;
   createColumn?: (column: ColumnPostBody) => void;
   createTask?: (task: TaskCreateBody) => void;
   type?: string;
@@ -14,6 +15,7 @@ const TYPES = {
   CREATE: 'create',
   PROFILE: 'profile',
   DELETEPROFILE: 'deleteprofile',
+  DELETECOLUMN: 'deletecolumn',
   CREATECOLUMN: 'createcolumn',
   CREATETASK: 'createtask',
 };

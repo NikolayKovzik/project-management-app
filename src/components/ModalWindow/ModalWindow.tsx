@@ -6,6 +6,7 @@ import AddColumn from './AddColumn/AddColumn';
 import AddTask from './AddTask/AddTask';
 import CreateBoard from './CreateBoard/CreateBoard';
 import DeleteBoard from './DeleteBoard/DeleteBoard';
+import DeleteColumn from './DeleteColumn/DeleteColumn';
 import DeleteProfile from './DeleteProfile/DeleteProfile';
 import EditProfile from './EditProfile/EditProfile';
 import { Props, TYPES } from './types/ModalWindow.types';
@@ -17,6 +18,7 @@ const ModalWindow = ({
   deleteBoard,
   deleteProfile,
   createColumn,
+  deleteCurrentColumn,
   createTask,
   type,
 }: Props): ReactElement => {
@@ -51,6 +53,12 @@ const ModalWindow = ({
           <DeleteProfile deleteProfile={deleteProfile} toggleModalWindow={toggleModalWindow} />
         )}
         {type === TYPES.CREATECOLUMN && <AddColumn createColumn={createColumn} />}
+        {type === TYPES.DELETECOLUMN && (
+          <DeleteColumn
+            deleteCurrentColumn={deleteCurrentColumn}
+            toggleModalWindow={toggleModalWindow}
+          />
+        )}
         {type === TYPES.CREATETASK && <AddTask createTask={createTask} />}
       </div>
     </button>
