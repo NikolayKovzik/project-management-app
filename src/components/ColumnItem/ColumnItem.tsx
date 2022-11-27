@@ -6,7 +6,7 @@ import ModalWindow from 'components/ModalWindow/ModalWindow';
 
 import binImage from '../../assets/images/bin.png';
 
-import styles from './Column.module.scss';
+import styles from './ColumnItem.module.scss';
 
 type Props = {
   boardId: string;
