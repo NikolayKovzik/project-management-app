@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
-import { ColumnPostBody } from 'core/api/models';
+import ColumnsApi from 'core/api/ColumnsApi';
+import { Column, ColumnBody, ColumnPostBody } from 'core/api/models';
 
-import Column from 'components/Column/Column';
+import ColumnItem from 'components/ColumnItem/ColumnItem';
 import ModalWindow from 'components/ModalWindow/ModalWindow';
 
 import styles from './BoardPage.module.scss';
@@ -11,16 +13,22 @@ import styles from './BoardPage.module.scss';
 const BoardPage = (): ReactElement => {
   const [modalWindow, setModalWindow] = useState(false);
   const params = useParams();
-  const [columns, setColumns] = useState<ColumnPostBody[]>([
-    { title: 'create', order: 1, boardId: String(params.id) },
-  ]);
+  const [columns, setColumns] = useState<Column[]>([]);
 
   const toggleModalWindow = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
     event.preventDefault();
     setModalWindow(!modalWindow);
   };
 
-  const createColumn = (column: ColumnPostBody): void => {
+  useEffect(() => {
+    const getAllColumns = async (): Promise<void> => {
+      const getColumns = await ColumnsApi.getAllColumnsByBoardId(String(params.id));
+      setColumns(getColumns.data);
+    };
+    getAllColumns();
+  }, []);
+
+  const createColumn = (column: Column): void => {
     console.log(column);
     // ColumnsApi.createColumn('1', column);
     // navigate('/');
@@ -43,7 +51,7 @@ const BoardPage = (): ReactElement => {
           </NavLink>
           <div className={styles.mainContainer}>
             {columns.map((column: ColumnPostBody) => (
-              <Column boardId={String(params.id)} column={column} deleteColumn={deleteColumn} />
+              <ColumnItem boardId={String(params.id)} column={column} deleteColumn={deleteColumn} />
             ))}
             <div className={styles.addButton}>
               <div className={styles.buttonAddContainer}>
