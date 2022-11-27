@@ -1,16 +1,19 @@
 import React, { ReactElement, useState } from 'react';
-import { ColumnBody, TaskCreateBody } from 'core/api/models';
+import { ColumnPostBody, TaskCreateBody } from 'core/api/models';
 
 import ModalWindow from 'components/ModalWindow/ModalWindow';
+
+import binImage from '../../assets/images/bin.png';
 
 import styles from './Board.module.scss';
 
 type Props = {
   boardId: string;
-  board: ColumnBody;
+  board: ColumnPostBody;
+  deleteColumn: (id: string) => void;
 };
 
-const Board = ({ boardId, board }: Props): ReactElement => {
+const Board = ({ boardId, board, deleteColumn }: Props): ReactElement => {
   const [tasks, setTasks] = useState<TaskCreateBody[]>([
     {
       title: 'TaskOne',
@@ -34,9 +37,18 @@ const Board = ({ boardId, board }: Props): ReactElement => {
     setModalWindow(!modalWindow);
   };
 
+  const deleteCurrentColumn = (): void => {
+    deleteColumn(board.boardId);
+  };
+
   return (
     <div className={styles.board}>
-      <p className={styles.boardTitle}>{board.title}</p>
+      <div className={styles.boardTitle}>
+        <p>{board.title}</p>
+        <button type="button" onClick={deleteCurrentColumn}>
+          <img src={binImage} alt="bin" />
+        </button>
+      </div>
       <p>{boardId}</p>
       <div className={styles.filterContainer}>
         <ul className={styles.boardContainer}>

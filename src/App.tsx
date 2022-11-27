@@ -27,7 +27,6 @@ const App = (): ReactElement => {
         <Route path="signup" element={<SignUpPage />} />
         <Route path="profile" element={<ProfilePage />} />
         <Route path="main" element={<MainPage />} />
-        <Route path="board" element={<BoardPage />} />
         <Route path="board/:id" element={<BoardPage />} />
 
         <Route path="*" element={<NotfoundPage />} />

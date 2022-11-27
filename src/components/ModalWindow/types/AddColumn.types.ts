@@ -1,6 +1,6 @@
-import { ColumnBody } from 'core/api/models';
+import { ColumnPostBody } from 'core/api/models';
 
 export type Props = {
   toggleModalWindow?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  createColumn?: (column: ColumnBody) => void;
+  createColumn?: (column: ColumnPostBody) => void;
 };

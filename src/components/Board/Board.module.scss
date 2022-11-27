@@ -14,6 +14,7 @@
 }
 
 .boardTitle {
+  position: relative;
   font-size: 20px;
   color: var(--color-white);
   font-family: 'Montserrat-Bold';
@@ -22,6 +23,32 @@
   padding: 15px;
   border-radius: 20px;
   background: var(--color-green);
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+
+    img {
+      height: 100%;
+      width: 20px;
+      object-fit: contain;
+      transition: 0.5s;
+    }
+  }
+
+  button:hover {
+    img {
+      filter: brightness(80%);
+    }
+  }
 }
 
 .filterContainer {
