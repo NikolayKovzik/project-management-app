@@ -3,6 +3,7 @@
 import React, { ReactElement } from 'react';
 
 import AddColumn from './AddColumn/AddColumn';
+import AddTask from './AddTask/AddTask';
 import CreateBoard from './CreateBoard/CreateBoard';
 import DeleteBoard from './DeleteBoard/DeleteBoard';
 import DeleteProfile from './DeleteProfile/DeleteProfile';
@@ -16,6 +17,7 @@ const ModalWindow = ({
   deleteBoard,
   deleteProfile,
   createColumn,
+  createTask,
   type,
 }: Props): ReactElement => {
   const disableClick = (event: { stopPropagation: () => void }): void => {
@@ -49,6 +51,7 @@ const ModalWindow = ({
           <DeleteProfile deleteProfile={deleteProfile} toggleModalWindow={toggleModalWindow} />
         )}
         {type === TYPES.CREATECOLUMN && <AddColumn createColumn={createColumn} />}
+        {type === TYPES.CREATETASK && <AddTask createTask={createTask} />}
       </div>
     </button>
   );
