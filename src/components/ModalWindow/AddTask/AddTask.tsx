@@ -21,7 +21,7 @@ const AddTask = ({ toggleModalWindow, createTask }: Props): ReactElement => {
       title,
       order: 1,
       description,
-      userId: 'USER',
+      userId: 'USER2',
       users: [],
     };
     createTask?.(task);

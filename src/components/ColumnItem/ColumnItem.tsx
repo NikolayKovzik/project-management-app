@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-underscore-dangle */
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Column, Task, TaskCreateBody } from 'core/api/models';
@@ -58,8 +59,13 @@ const ColumnItem = ({ boardId, column, deleteColumn, setLoading }: Props): React
     setLoading(false);
   };
 
-  const deleteCurrentTask = (): void => {
-    setTasks(tasks.filter((task) => task._id !== deleteId));
+  const deleteCurrentTask = async (): Promise<void> => {
+    setLoading(true);
+    const deleteTaskApi = await TasksApi.deleteTask(column.boardId, column._id, deleteId);
+    if (deleteTaskApi.status === 200) {
+      getAllTasks();
+    }
+    setLoading(false);
   };
 
   const deleteCurrentColumn = (): void => {
