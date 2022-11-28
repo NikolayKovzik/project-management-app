@@ -27,7 +27,6 @@ const BoardItem = ({ boardInfo, deleteCurrentBoard }: Props): ReactElement => {
   };
 
   const deleteBoard = (): void => {
-    BoardsApi.deleteBoard(boardInfo._id);
     deleteCurrentBoard(boardInfo._id);
   };
 
