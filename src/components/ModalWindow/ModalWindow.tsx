@@ -63,7 +63,9 @@ const ModalWindow = ({
             toggleModalWindow={toggleModalWindow}
           />
         )}
-        {type === TYPES.CREATETASK && <AddTask createTask={createTask} />}
+        {type === TYPES.CREATETASK && (
+          <AddTask createTask={createTask} toggleModalWindow={toggleModalWindow} />
+        )}
         {type === TYPES.DELETETASK && (
           <DeleteTask deleteCurrentTask={deleteCurrentTask} toggleModalWindow={toggleModalWindow} />
         )}

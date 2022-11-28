@@ -61,6 +61,7 @@ const BoardPage = (): ReactElement => {
             <div className={styles.mainContainer}>
               {columns.map((column: Column) => (
                 <ColumnItem
+                  setLoading={setLoading}
                   boardId={String(params.id)}
                   column={column}
                   deleteColumn={deleteColumn}

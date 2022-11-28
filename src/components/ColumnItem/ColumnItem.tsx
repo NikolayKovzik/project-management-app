@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
-import React, { ReactElement, useState } from 'react';
-import { Column, Task } from 'core/api/models';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { Column, Task, TaskCreateBody } from 'core/api/models';
+import TasksApi from 'core/api/TasksApi';
 
 import ModalWindow from 'components/ModalWindow/ModalWindow';
 
@@ -12,21 +13,11 @@ type Props = {
   boardId: string;
   column: Column;
   deleteColumn: (boardId: string, columnId: string) => void;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const ColumnItem = ({ boardId, column, deleteColumn }: Props): ReactElement => {
-  const [tasks, setTasks] = useState<Task[]>([
-    {
-      _id: String(Math.random() * 1000),
-      title: 'TaskOne',
-      order: 0,
-      boardId: '',
-      columnId: '',
-      description: 'Today',
-      userId: '',
-      users: [],
-    },
-  ]);
+const ColumnItem = ({ boardId, column, deleteColumn, setLoading }: Props): ReactElement => {
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [deleteId, setDeleteId] = useState('');
   const [modalWindow, setModalWindow] = useState(false);
   const [modalDeleteColumnWindow, setModalDeleteColumnWindow] = useState(false);
@@ -47,11 +38,24 @@ const ColumnItem = ({ boardId, column, deleteColumn }: Props): ReactElement => {
     setModalDeleteTaskWindow(!modalDeleteTaskWindow);
   };
 
-  const createTask = (task: Task): void => {
-    setTasks((prevState) => {
-      return [...prevState, task];
-    });
-    setModalWindow(!modalWindow);
+  const getAllTasks = async (): Promise<void> => {
+    const getColumns = await TasksApi.getTasksInColumn(column.boardId, column._id);
+    setTasks(getColumns.data);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    getAllTasks();
+  }, []);
+
+  const createTask = async (task: TaskCreateBody): Promise<void> => {
+    setLoading(true);
+    const getApiTask = await TasksApi.createTask(column.boardId, column._id, task);
+    if (getApiTask.status === 200) {
+      getAllTasks();
+    }
+    setLoading(false);
   };
 
   const deleteCurrentTask = (): void => {
