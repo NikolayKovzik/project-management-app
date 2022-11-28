@@ -1,4 +1,4 @@
-import { Column, Task } from 'core/api/models';
+import { ColumnBody, Task } from 'core/api/models';
 
 type Props = {
   toggleModalWindow?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -6,7 +6,7 @@ type Props = {
   deleteProfile?: () => void;
   deleteCurrentColumn?: () => void;
   deleteCurrentTask?: () => void;
-  createColumn?: (column: Column) => void;
+  createColumn?: (column: ColumnBody) => void;
   createTask?: (task: Task) => void;
   type?: string;
 };

@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react';
-import { Column } from 'core/api/models';
+import { ColumnBody } from 'core/api/models';
 
 import { Props } from '../types/AddColumn.types';
 
@@ -13,11 +13,9 @@ const AddColumn = ({ toggleModalWindow, createColumn }: Props): ReactElement => 
   };
 
   const addColumn = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
-    const column: Column = {
+    const column: ColumnBody = {
       title,
       order: 0,
-      boardId: String(Math.random() * 1000),
-      _id: '',
     };
     createColumn?.(column);
     toggleModalWindow?.(e);

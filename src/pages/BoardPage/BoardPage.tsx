@@ -22,23 +22,21 @@ const BoardPage = (): ReactElement => {
     setModalWindow(!modalWindow);
   };
 
+  const getAllColumns = async (): Promise<void> => {
+    const getColumns = await ColumnsApi.getAllColumnsByBoardId(String(params.id));
+    setColumns(getColumns.data);
+    setLoading(false);
+  };
+
   useEffect(() => {
     setLoading(true);
-    const getAllColumns = async (): Promise<void> => {
-      const getColumns = await ColumnsApi.getAllColumnsByBoardId(String(params.id));
-      setColumns(getColumns.data);
-      setLoading(false);
-    };
     getAllColumns();
   }, []);
 
-  const createColumn = (column: Column): void => {
-    console.log(column);
-    // ColumnsApi.createColumn('1', column);
-    // navigate('/');
-    setColumns((prevState) => {
-      return [...prevState, column];
-    });
+  const createColumn = (column: ColumnBody): void => {
+    ColumnsApi.createColumn(String(params.id), column);
+    setLoading(true);
+    getAllColumns();
     setModalWindow(!modalWindow);
   };
 
