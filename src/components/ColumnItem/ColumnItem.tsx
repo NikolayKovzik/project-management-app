@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import React, { ReactElement, useState } from 'react';
-import { ColumnPostBody, Task } from 'core/api/models';
+import { Column, Task } from 'core/api/models';
 
 import ModalWindow from 'components/ModalWindow/ModalWindow';
 
@@ -10,11 +10,11 @@ import styles from './ColumnItem.module.scss';
 
 type Props = {
   boardId: string;
-  column: ColumnPostBody;
-  deleteColumn: (id: string) => void;
+  column: Column;
+  deleteColumn: (boardId: string, columnId: string) => void;
 };
 
-const Column = ({ boardId, column, deleteColumn }: Props): ReactElement => {
+const ColumnItem = ({ boardId, column, deleteColumn }: Props): ReactElement => {
   const [tasks, setTasks] = useState<Task[]>([
     {
       _id: String(Math.random() * 1000),
@@ -59,7 +59,7 @@ const Column = ({ boardId, column, deleteColumn }: Props): ReactElement => {
   };
 
   const deleteCurrentColumn = (): void => {
-    deleteColumn(column.boardId);
+    deleteColumn(column.boardId, column._id);
   };
 
   return (
@@ -121,4 +121,4 @@ const Column = ({ boardId, column, deleteColumn }: Props): ReactElement => {
   );
 };
 
-export default Column;
+export default ColumnItem;

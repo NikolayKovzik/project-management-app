@@ -3,7 +3,7 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import ColumnsApi from 'core/api/ColumnsApi';
-import { Column, ColumnBody, ColumnPostBody } from 'core/api/models';
+import { Column, ColumnBody } from 'core/api/models';
 
 import ColumnItem from 'components/ColumnItem/ColumnItem';
 import Loader from 'components/Loader/Loader';
@@ -33,15 +33,22 @@ const BoardPage = (): ReactElement => {
     getAllColumns();
   }, []);
 
-  const createColumn = (column: ColumnBody): void => {
-    ColumnsApi.createColumn(String(params.id), column);
+  const createColumn = async (column: ColumnBody): Promise<void> => {
     setLoading(true);
-    getAllColumns();
+    const createColumnResp = await ColumnsApi.createColumn(String(params.id), column);
+    if (createColumnResp.status === 200) {
+      getAllColumns();
+    }
+
     setModalWindow(!modalWindow);
   };
 
-  const deleteColumn = (id: string): void => {
-    setColumns(columns.filter((column) => column.boardId !== id));
+  const deleteColumn = async (boardId: string, columnId: string): Promise<void> => {
+    setLoading(true);
+    const createColumnResp = await ColumnsApi.deleteColumn(boardId, columnId);
+    if (createColumnResp.status === 200) {
+      getAllColumns();
+    }
   };
 
   return (
@@ -54,7 +61,7 @@ const BoardPage = (): ReactElement => {
               <button type="button">&#5130;</button>
             </NavLink>
             <div className={styles.mainContainer}>
-              {columns.map((column: ColumnPostBody) => (
+              {columns.map((column: Column) => (
                 <ColumnItem
                   boardId={String(params.id)}
                   column={column}
