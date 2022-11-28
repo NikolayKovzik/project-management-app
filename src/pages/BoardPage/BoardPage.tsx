@@ -39,8 +39,6 @@ const BoardPage = (): ReactElement => {
     if (createColumnResp.status === 200) {
       getAllColumns();
     }
-
-    setModalWindow(!modalWindow);
   };
 
   const deleteColumn = async (boardId: string, columnId: string): Promise<void> => {

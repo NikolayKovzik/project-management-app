@@ -54,7 +54,9 @@ const ModalWindow = ({
         {type === TYPES.DELETEPROFILE && (
           <DeleteProfile deleteProfile={deleteProfile} toggleModalWindow={toggleModalWindow} />
         )}
-        {type === TYPES.CREATECOLUMN && <AddColumn createColumn={createColumn} />}
+        {type === TYPES.CREATECOLUMN && (
+          <AddColumn createColumn={createColumn} toggleModalWindow={toggleModalWindow} />
+        )}
         {type === TYPES.DELETECOLUMN && (
           <DeleteColumn
             deleteCurrentColumn={deleteCurrentColumn}
