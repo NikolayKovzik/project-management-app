@@ -13,19 +13,24 @@ const MainPage = (): ReactElement => {
   const [data, setData] = useState<Board[]>([]);
   const [loading, setLoading] = useState(false);
 
+  const getAllBoards = async (): Promise<void> => {
+    const result = await BoardsApi.getAllBoards();
+    setData(result.data);
+    setLoading(false);
+  };
+
   useEffect(() => {
     setLoading(true);
-    const getAllBoards = async (): Promise<void> => {
-      const result = await BoardsApi.getAllBoards();
-      setData(result.data);
-      setLoading(false);
-    };
     getAllBoards();
   }, []);
 
-  const deleteCurrentBoard = (id: string): void => {
-    BoardsApi.deleteBoard(id);
-    setData(data.filter((board) => board._id !== id));
+  const deleteCurrentBoard = async (id: string): Promise<void> => {
+    setLoading(true);
+    const deleteBoardApi = await BoardsApi.deleteBoard(id);
+    if (deleteBoardApi.status === 200) {
+      getAllBoards();
+    }
+    setLoading(false);
   };
 
   return (
