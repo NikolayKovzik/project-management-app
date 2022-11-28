@@ -60,12 +60,7 @@ const BoardPage = (): ReactElement => {
             </NavLink>
             <div className={styles.mainContainer}>
               {columns.map((column: Column) => (
-                <ColumnItem
-                  setLoading={setLoading}
-                  boardId={String(params.id)}
-                  column={column}
-                  deleteColumn={deleteColumn}
-                />
+                <ColumnItem setLoading={setLoading} column={column} deleteColumn={deleteColumn} />
               ))}
               <div className={styles.addButton}>
                 <div className={styles.buttonAddContainer}>

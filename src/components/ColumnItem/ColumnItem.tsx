@@ -11,13 +11,12 @@ import binImage from '../../assets/images/bin.png';
 import styles from './ColumnItem.module.scss';
 
 type Props = {
-  boardId: string;
   column: Column;
   deleteColumn: (boardId: string, columnId: string) => void;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const ColumnItem = ({ boardId, column, deleteColumn, setLoading }: Props): ReactElement => {
+const ColumnItem = ({ column, deleteColumn, setLoading }: Props): ReactElement => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [deleteId, setDeleteId] = useState('');
   const [modalWindow, setModalWindow] = useState(false);
@@ -95,7 +94,6 @@ const ColumnItem = ({ boardId, column, deleteColumn, setLoading }: Props): React
             <img src={binImage} alt="bin" />
           </button>
         </div>
-        <p>{boardId}</p>
         <div className={styles.filterContainer}>
           <ul className={styles.boardContainer}>
             {tasks.map((elem) => (
