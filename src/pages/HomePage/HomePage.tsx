@@ -2,6 +2,9 @@ import React, { ReactElement } from 'react';
 import { useAppDispatch, useAppSelector } from 'store';
 
 import mainImage from '../../assets/images/kanaban.png';
+import kirillImage from '../../assets/images/kirill.png';
+import nikolayImage from '../../assets/images/nikolay.png';
+import igorImage from '../../assets/images/shah.png';
 
 import styles from './HomePage.module.scss';
 
@@ -35,6 +38,56 @@ const HomePage = (): ReactElement => {
               <button className={styles.startBtn} type="button">
                 Get started
               </button>
+            </div>
+          </div>
+          <div className={styles.aboutUs}>
+            <p>About us</p>
+            <div className={styles.developers}>
+              <a
+                className={styles.developer}
+                href="https://github.com/DarkCrew"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <p className={styles.developerTitle}>Kirill</p>
+                <div className={styles.developerImage}>
+                  <img src={kirillImage} alt="developerPhoto" />
+                </div>
+                <p className={styles.developerSubtitle}>
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                  Ipsum has been the industry standard dummy text ever since the 1500s
+                </p>
+              </a>
+              <a
+                className={styles.developer}
+                href="https://github.com/ishah148"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <p className={styles.developerTitle}>Igor</p>
+                <div className={styles.developerImage}>
+                  <img src={igorImage} alt="developerPhoto" />
+                </div>
+                <p className={styles.developerSubtitle}>
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                  Ipsum has been the industry standard dummy text ever since the 1500s
+                </p>
+              </a>
+              <a
+                className={styles.developer}
+                href="https://github.com/NikolayKovzik"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <p className={styles.developerTitle}>Nikolay</p>
+                <div className={styles.developerImage}>
+                  <img src={nikolayImage} alt="developerPhoto" />
+                </div>
+                <p className={styles.developerSubtitle}>
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                  Ipsum has been the industry standard dummy text ever since the 1500s
+                </p>
+              </a>
             </div>
           </div>
         </div>
