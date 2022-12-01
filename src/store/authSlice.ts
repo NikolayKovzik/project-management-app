@@ -54,6 +54,9 @@ const authSlice = createSlice({
         state.isAuth = true;
       }
     },
+    clearLoginStatus(state: AuthState) {
+      state.loginStatus = 'idle';
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -73,10 +76,23 @@ const authSlice = createSlice({
         // if (action.payload instanceof AxiosError) {
         // }
         state.loginStatus = 'failed';
+      })
+      // Это для регистрации
+      .addCase(sendRegisterRequest.pending, (state) => {
+        state.loginStatus = 'pending';
+      })
+      .addCase(sendRegisterRequest.fulfilled, (state, action) => {
+        if (action.payload.status === 200) {
+          state.isAuth = true;
+        }
+        state.loginStatus = 'succeeded';
+      })
+      .addCase(sendRegisterRequest.rejected, (state, action) => {
+        state.loginStatus = 'failed';
       });
   },
 });
 
-export const { changeAuthStatus, checkAuth } = authSlice.actions;
+export const { changeAuthStatus, checkAuth, clearLoginStatus } = authSlice.actions;
 
 export default authSlice.reducer;

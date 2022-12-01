@@ -4,7 +4,7 @@ import React, { ReactElement, useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store';
-import { sendLoginRequest } from 'store/authSlice';
+import { clearLoginStatus, sendLoginRequest } from 'store/authSlice';
 
 import Loader from 'components/Loader/Loader';
 
@@ -24,7 +24,7 @@ const LoginPage = (): ReactElement => {
 
   const handleSuccessSubmit = (): void => {
     // TODO redux global state isAuth = thue
-    if (navState.from) {
+    if (navState !== null && navState.from) {
       navigate(navState.from);
     } else navigate('/');
   };
@@ -43,12 +43,16 @@ const LoginPage = (): ReactElement => {
   useEffect(() => {
     if (loginStatus === 'succeeded') {
       handleSuccessSubmit();
+      dispatch(clearLoginStatus());
     }
-  }, [isAuth]);
+  }, [loginStatus]);
+
+  useEffect(() => {
+    console.log('mounted');
+  }, []);
 
   const onSubmit: SubmitHandler<IFormInput> = (data: IFormInput): void => {
     dispatch(sendLoginRequest({ login: data.login, password: data.password }));
-
     // dispatch(sendLoginRequest({ login: 'Ilo7776', password: 'qwerty123' }));
   };
 
