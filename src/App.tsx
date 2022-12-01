@@ -24,7 +24,7 @@ const App = (): ReactElement => {
 
   useEffect(() => {
     dispatch(checkAuth());
-    dispatch(sendLoginRequest({ login: 'Ilo7776', password: 'qwerty123' }));
+    // dispatch(sendLoginRequest({ login: 'Ilo7776', password: 'qwerty123' }));
   }, []);
 
   return (

@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { ReactElement, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useAppSelector } from 'store';
 
 import ModalWindow from 'components/ModalWindow/ModalWindow';
 
@@ -19,7 +20,7 @@ const setActive: SetActiveCallback = (props: SetActiveCallbackProps): string =>
   props.isActive ? 'active' : 'inactive';
 
 const Header = (): ReactElement => {
-  const [auth, setAuth] = useState(true);
+  const { isAuth } = useAppSelector((state) => state.auth);
 
   const [modalWindow, setModalWindow] = useState(false);
   const toggleModalWindow = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
@@ -53,7 +54,7 @@ const Header = (): ReactElement => {
             </NavLink>
           </div>
           <ul className={styles.menu}>
-            {auth && (
+            {isAuth && (
               <li onClick={toggleModalWindow}>
                 <NavLink to="/" className={setActive as SetActiveCallback} end>
                   + New board
@@ -63,14 +64,14 @@ const Header = (): ReactElement => {
                 </NavLink>
               </li>
             )}
-            {auth && (
+            {isAuth && (
               <li>
                 <NavLink to="/profile" className={setActive as SetActiveCallback}>
                   Edit profile
                 </NavLink>
               </li>
             )}
-            {auth && (
+            {isAuth && (
               <li>
                 <NavLink to="/main" className={setActive as SetActiveCallback}>
                   Main page
@@ -86,7 +87,7 @@ const Header = (): ReactElement => {
               </select>
             </li>
 
-            {auth && (
+            {isAuth && (
               <li className={styles.itemSignOut}>
                 <NavLink to="/" className={setActive as SetActiveCallback}>
                   <img src={signOutImg} alt="sign-out" />
@@ -95,7 +96,7 @@ const Header = (): ReactElement => {
               </li>
             )}
 
-            {!auth && (
+            {!isAuth && (
               <li className={styles.itemSignIn}>
                 <NavLink to="/signin" className={setActive as SetActiveCallback}>
                   <img src={signInImg} alt="sign-in" />
@@ -104,7 +105,7 @@ const Header = (): ReactElement => {
               </li>
             )}
 
-            {!auth && (
+            {!isAuth && (
               <li className={styles.itemSignUp}>
                 <NavLink to="/signup" className={setActive as SetActiveCallback}>
                   <img src={signUpImg} alt="sign-up" />
