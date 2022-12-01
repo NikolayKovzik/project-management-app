@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 import BoardsApi from 'core/api/BoardsApi';
+import AuthApi from 'core/rest/AuthApi';
 import store from 'store';
 
 import App from './App';

@@ -1,66 +1,90 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
-import { ColumnBody } from 'core/api/models';
+import ColumnsApi from 'core/api/ColumnsApi';
+import { Column, ColumnBody } from 'core/api/models';
 
-import Board from 'components/Board/Board';
+import ColumnItem from 'components/ColumnItem/ColumnItem';
+import Loader from 'components/Loader/Loader';
 import ModalWindow from 'components/ModalWindow/ModalWindow';
 
 import styles from './BoardPage.module.scss';
 
 const BoardPage = (): ReactElement => {
-  const [modalWindow, setModalWindow] = useState(false);
-  const [boards, setBoards] = useState<ColumnBody[]>([{ title: 'create', order: 1 }]);
   const params = useParams();
+  const [modalWindow, setModalWindow] = useState(false);
+  const [columns, setColumns] = useState<Column[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const toggleModalWindow = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
     event.preventDefault();
     setModalWindow(!modalWindow);
   };
 
-  const createColumn = (column: ColumnBody): void => {
-    console.log(column);
-    // ColumnsApi.createColumn('1', column);
-    // navigate('/');
-    setBoards((prevState) => {
-      return [...prevState, column];
-    });
-    setModalWindow(!modalWindow);
+  const getAllColumns = async (): Promise<void> => {
+    const getColumns = await ColumnsApi.getAllColumnsByBoardId(String(params.id));
+    setColumns(getColumns.data);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    getAllColumns();
+  }, []);
+
+  const createColumn = async (column: ColumnBody): Promise<void> => {
+    setLoading(true);
+    const createColumnResp = await ColumnsApi.createColumn(String(params.id), column);
+    if (createColumnResp.status === 200) {
+      getAllColumns();
+    }
+  };
+
+  const deleteColumn = async (boardId: string, columnId: string): Promise<void> => {
+    setLoading(true);
+    const createColumnResp = await ColumnsApi.deleteColumn(boardId, columnId);
+    if (createColumnResp.status === 200) {
+      getAllColumns();
+    }
   };
 
   return (
-    <section className={styles.boards}>
-      <div className="container">
-        <div className={styles.container}>
-          <NavLink className={styles.backButton} to="/main">
-            <button type="button">&#5130;</button>
-          </NavLink>
-          <div className={styles.mainContainer}>
-            {boards.map((board: ColumnBody) => (
-              <Board boardId={String(params.id)} board={board} />
-            ))}
-            <div className={styles.addButton}>
-              <div className={styles.buttonAddContainer}>
-                <button
-                  className={styles.addColumnButton}
-                  type="button"
-                  onClick={toggleModalWindow}
-                >
-                  {modalWindow && (
-                    <ModalWindow
-                      type="createcolumn"
-                      toggleModalWindow={toggleModalWindow}
-                      createColumn={createColumn}
-                    />
-                  )}
-                  + Add column
-                </button>
+    <>
+      {loading && <Loader />}
+      <section className={styles.boards}>
+        <div className="container">
+          <div className={styles.container}>
+            <NavLink className={styles.backButton} to="/main">
+              <button type="button">&#5130;</button>
+            </NavLink>
+            <div className={styles.mainContainer}>
+              {columns.map((column: Column) => (
+                <ColumnItem setLoading={setLoading} column={column} deleteColumn={deleteColumn} />
+              ))}
+              <div className={styles.addButton}>
+                <div className={styles.buttonAddContainer}>
+                  <button
+                    className={styles.addColumnButton}
+                    type="button"
+                    onClick={toggleModalWindow}
+                  >
+                    {modalWindow && (
+                      <ModalWindow
+                        type="createcolumn"
+                        toggleModalWindow={toggleModalWindow}
+                        createColumn={createColumn}
+                      />
+                    )}
+                    + Add column
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

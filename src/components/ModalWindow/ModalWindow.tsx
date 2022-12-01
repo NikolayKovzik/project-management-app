@@ -3,9 +3,12 @@
 import React, { ReactElement } from 'react';
 
 import AddColumn from './AddColumn/AddColumn';
+import AddTask from './AddTask/AddTask';
 import CreateBoard from './CreateBoard/CreateBoard';
 import DeleteBoard from './DeleteBoard/DeleteBoard';
+import DeleteColumn from './DeleteColumn/DeleteColumn';
 import DeleteProfile from './DeleteProfile/DeleteProfile';
+import DeleteTask from './DeleteTask/DeleteTask';
 import EditProfile from './EditProfile/EditProfile';
 import { Props, TYPES } from './types/ModalWindow.types';
 
@@ -16,6 +19,9 @@ const ModalWindow = ({
   deleteBoard,
   deleteProfile,
   createColumn,
+  deleteCurrentColumn,
+  deleteCurrentTask,
+  createTask,
   type,
 }: Props): ReactElement => {
   const disableClick = (event: { stopPropagation: () => void }): void => {
@@ -48,7 +54,21 @@ const ModalWindow = ({
         {type === TYPES.DELETEPROFILE && (
           <DeleteProfile deleteProfile={deleteProfile} toggleModalWindow={toggleModalWindow} />
         )}
-        {type === TYPES.CREATECOLUMN && <AddColumn createColumn={createColumn} />}
+        {type === TYPES.CREATECOLUMN && (
+          <AddColumn createColumn={createColumn} toggleModalWindow={toggleModalWindow} />
+        )}
+        {type === TYPES.DELETECOLUMN && (
+          <DeleteColumn
+            deleteCurrentColumn={deleteCurrentColumn}
+            toggleModalWindow={toggleModalWindow}
+          />
+        )}
+        {type === TYPES.CREATETASK && (
+          <AddTask createTask={createTask} toggleModalWindow={toggleModalWindow} />
+        )}
+        {type === TYPES.DELETETASK && (
+          <DeleteTask deleteCurrentTask={deleteCurrentTask} toggleModalWindow={toggleModalWindow} />
+        )}
       </div>
     </button>
   );
