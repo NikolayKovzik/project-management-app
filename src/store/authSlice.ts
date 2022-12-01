@@ -10,12 +10,14 @@ import isExpiredToken from './utils';
 type AuthState = {
   isAuth: boolean;
   message: string | null;
-  status: 'idle' | 'pending' | 'succeeded' | 'failed';
+  loginStatus: 'idle' | 'pending' | 'succeeded' | 'failed';
+  registerStatus: 'idle' | 'pending' | 'succeeded' | 'failed';
 };
 
 const initialState: AuthState = {
   isAuth: false,
-  status: 'idle',
+  loginStatus: 'idle',
+  registerStatus: 'idle',
   message: null,
 };
 
@@ -24,7 +26,7 @@ export const sendLoginRequest = createAsyncThunk('auth/login', async (userData: 
   return response;
 });
 export const sendRegisterRequest = createAsyncThunk(
-  'fetch/fetchTodo',
+  'auth/register',
   async (userData: UserRegistrationData) => {
     const response = await AuthApi.signUp(userData);
     return response;
@@ -51,19 +53,19 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(sendLoginRequest.pending, (state) => {
-        state.status = 'pending';
+        state.loginStatus = 'pending';
       })
       .addCase(sendLoginRequest.fulfilled, (state, action) => {
         if (action.payload.status === 200) {
           state.isAuth = true;
         }
-        state.status = 'succeeded';
+        state.loginStatus = 'succeeded';
       })
       .addCase(sendLoginRequest.rejected, (state, action) => {
         if (action.payload instanceof AxiosError) {
           state.message = action.payload.message;
         }
-        state.status = 'failed';
+        state.loginStatus = 'failed';
       });
   },
 });
