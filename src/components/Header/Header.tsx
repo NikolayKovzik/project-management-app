@@ -2,7 +2,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { ReactElement, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useAppSelector } from 'store';
+import { useAppDispatch, useAppSelector } from 'store';
+import { changeAuthStatus, sendLoginRequest } from 'store/authSlice';
 
 import ModalWindow from 'components/ModalWindow/ModalWindow';
 
@@ -36,6 +37,13 @@ const Header = (): ReactElement => {
     } else {
       setNavbar(true);
     }
+  };
+
+  const dispatch = useAppDispatch();
+  const signOut = (): void => {
+    dispatch(changeAuthStatus(false));
+    localStorage.removeItem('project-management-app-token');
+    localStorage.removeItem('token-created-time');
   };
 
   useEffect(() => {
@@ -88,7 +96,7 @@ const Header = (): ReactElement => {
             </li>
 
             {isAuth && (
-              <li className={styles.itemSignOut}>
+              <li className={styles.itemSignOut} onClick={signOut}>
                 <NavLink to="/" className={setActive as SetActiveCallback}>
                   <img src={signOutImg} alt="sign-out" />
                   Sign out

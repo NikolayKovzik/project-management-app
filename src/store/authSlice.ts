@@ -67,9 +67,11 @@ const authSlice = createSlice({
         state.loginStatus = 'succeeded';
       })
       .addCase(sendLoginRequest.rejected, (state, action) => {
-        if (action.payload instanceof AxiosError) {
-          state.message = action.payload.message;
-        }
+        // if (action.error.message === 'Request failed with status code 401') {
+        //   console.log('GG');
+        // }
+        // if (action.payload instanceof AxiosError) {
+        // }
         state.loginStatus = 'failed';
       });
   },
