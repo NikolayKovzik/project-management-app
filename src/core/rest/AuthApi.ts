@@ -19,12 +19,10 @@ class AuthApi {
 
   static async signIn(userData: UserLoginData): Promise<AxiosResponse<AuthToken>> {
     const res = await ManagerAppApi.post<AuthToken>(`/auth/signin`, userData);
-    // console.log('resp signIn', res);
-    // console.log(localStorage.getItem('project-management-app-token'));
     if (+res.status === 200 && res.data.token) {
       localStorage.setItem('project-management-app-token', res.data.token);
       const time = `${new Date().getTime()}`;
-      localStorage.setItem('token-created', time);
+      localStorage.setItem('token-created-time', time);
     }
     return res;
   }

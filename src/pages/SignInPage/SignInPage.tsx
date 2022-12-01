@@ -12,7 +12,7 @@ const LoginPage = (): ReactElement => {
   const navState = useLocation().state;
   const navigate = useNavigate();
   //* REDUX using
-  const { message, status } = useAppSelector((state) => state.auth);
+  const { message, loginStatus } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   // ***
   const prevLocation = navState?.from || '';
@@ -44,8 +44,8 @@ const LoginPage = (): ReactElement => {
                   Log in
                 </button>
                 {/* Redux using */}
-                {status === 'failed' && <p>{message}</p>}
-                {status === 'pending' && <p>Loading...</p>}
+                {loginStatus === 'failed' && <p>{message}</p>}
+                {loginStatus === 'pending' && <p>Loading...</p>}
                 {/* *** */}
                 <Link className={styles.helpBtn} to="/signup">
                   I haven`t account

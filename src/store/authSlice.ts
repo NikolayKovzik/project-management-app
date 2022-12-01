@@ -21,10 +21,13 @@ const initialState: AuthState = {
   message: null,
 };
 
-export const sendLoginRequest = createAsyncThunk('auth/login', async (userData: UserLoginData) => {
-  const response = await AuthApi.signIn(userData);
-  return response;
-});
+export const sendLoginRequest = createAsyncThunk(
+  'auth/login',
+  async (userData: UserLoginData, { rejectWithValue }) => {
+    const response = await AuthApi.signIn(userData);
+    return response;
+  }
+);
 export const sendRegisterRequest = createAsyncThunk(
   'auth/register',
   async (userData: UserRegistrationData) => {
@@ -43,9 +46,11 @@ const authSlice = createSlice({
     checkAuth(state: AuthState) {
       const token = localStorage.getItem('project-management-app-token');
       if (!token || isExpiredToken()) {
+        console.log('!token || isExpiredToken()');
         state.isAuth = false;
       }
       if (token && !isExpiredToken()) {
+        console.log('token && !isExpiredToken()');
         state.isAuth = true;
       }
     },
@@ -70,6 +75,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { changeAuthStatus } = authSlice.actions;
+export const { changeAuthStatus, checkAuth } = authSlice.actions;
 
 export default authSlice.reducer;

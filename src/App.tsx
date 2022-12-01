@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import BoardPage from 'pages/BoardPage/BoardPage';
 import HomePage from 'pages/HomePage/HomePage';
@@ -8,6 +8,8 @@ import NotfoundPage from 'pages/NotFoundPage/NotFoundPage';
 import ProfilePage from 'pages/ProfilePage/ProfilePage';
 import LoginPage from 'pages/SignInPage/SignInPage';
 import SignUpPage from 'pages/SignUpPage/SignUpPage';
+import { useAppDispatch } from 'store';
+import { checkAuth, sendLoginRequest } from 'store/authSlice';
 import TestRedux from 'TempRedux';
 
 import Layout from 'components/Layout/Layout';
@@ -17,6 +19,14 @@ import './styles/normalize.css';
 import './styles/index.scss';
 
 const App = (): ReactElement => {
+  // checkAuth
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+    dispatch(sendLoginRequest({ login: 'Ilo7776', password: 'qwerty123' }));
+  }, []);
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
