@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store';
@@ -16,7 +17,7 @@ const LoginPage = (): ReactElement => {
   const navState = useLocation().state;
   const navigate = useNavigate();
   //* REDUX using
-  const { message, loginStatus } = useAppSelector((state) => state.auth);
+  const { message, loginStatus, isAuth } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   // ***
   const prevLocation = navState?.from || '';
@@ -39,11 +40,15 @@ const LoginPage = (): ReactElement => {
     formState: { errors },
   } = useForm<IFormInput>();
 
+  useEffect(() => {
+    if (loginStatus === 'succeeded') {
+      handleSuccessSubmit();
+    }
+  }, [isAuth]);
+
   const onSubmit: SubmitHandler<IFormInput> = (data: IFormInput): void => {
     dispatch(sendLoginRequest({ login: data.login, password: data.password }));
-    if (loginStatus === 'succeeded') {
-      navigate('/');
-    }
+
     // dispatch(sendLoginRequest({ login: 'Ilo7776', password: 'qwerty123' }));
   };
 
@@ -61,8 +66,12 @@ const LoginPage = (): ReactElement => {
                     {...register('login', {
                       required: 'Required field',
                       minLength: {
-                        value: 4,
+                        value: 3,
                         message: 'Login should contain minimum 3 symbols',
+                      },
+                      maxLength: {
+                        value: 15,
+                        message: 'Login should contain maximum 15 symbols',
                       },
                     })}
                     type="text"
@@ -76,8 +85,12 @@ const LoginPage = (): ReactElement => {
                     {...register('password', {
                       required: 'Required field',
                       minLength: {
-                        value: 6,
-                        message: 'Password should contain minimum 3 symbols',
+                        value: 5,
+                        message: 'Password should contain minimum 5 symbols',
+                      },
+                      maxLength: {
+                        value: 20,
+                        message: 'Password should contain maximum 20 symbols',
                       },
                     })}
                     type="text"

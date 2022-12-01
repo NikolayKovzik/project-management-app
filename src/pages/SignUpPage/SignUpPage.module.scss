@@ -22,17 +22,31 @@
   justify-content: center;
   gap: 40px;
 
-  input {
-    color: var(--color-darkpurple);
-    font-size: 18px;
-    font-family: 'Montserrat-Regular';
-    padding: 15px;
-    padding-left: 25px;
-    border-radius: 20px;
-    border: 1px solid var(--color-black);
-    -webkit-box-shadow: 0px 0px 20px 13px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0px 0px 20px 13px rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 0px 20px 13px rgba(0, 0, 0, 0.5);
+  .inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+
+    p {
+      padding-left: 25px;
+      color: var(--color-red);
+      font-size: 16px;
+      font-family: 'Montserrat-Regular';
+    }
+
+    input {
+      color: var(--color-darkpurple);
+      font-size: 18px;
+      font-family: 'Montserrat-Regular';
+      padding: 15px;
+      padding-left: 25px;
+      border-radius: 20px;
+      border: 1px solid var(--color-black);
+      -webkit-box-shadow: 0px 0px 20px 13px rgba(0, 0, 0, 0.5);
+      -moz-box-shadow: 0px 0px 20px 13px rgba(0, 0, 0, 0.5);
+      box-shadow: 0px 0px 20px 13px rgba(0, 0, 0, 0.5);
+    }
   }
 }
 
