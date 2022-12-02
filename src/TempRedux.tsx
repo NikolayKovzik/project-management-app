@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'store';
-import { changeAuthStatus, increment } from 'store/authSlice';
+import { changeAuthStatus } from 'store/authSlice';
 
 import { fetchTodo } from './store/fetchSlice';
 
@@ -13,7 +13,6 @@ const styles = `
 const TestRedux = (): ReactElement => {
   const auth = useAppSelector((state) => state.auth.isAuth);
   const { data, status } = useAppSelector((state) => state.fetch);
-  const { counter } = useAppSelector((state) => state.auth);
 
   const dispatch = useAppDispatch();
   function toggleAuth(): void {
@@ -23,7 +22,7 @@ const TestRedux = (): ReactElement => {
     dispatch(fetchTodo());
   }
   function test(): void {
-    dispatch(increment());
+    // dispatch(increment());
   }
 
   return (
@@ -40,7 +39,6 @@ const TestRedux = (): ReactElement => {
       <button type="button" onClick={test}>
         increment
       </button>
-      <h2>Counter:{counter}</h2>
       <h2>Status: {status}</h2>
       <div>
         <p>data:</p>
