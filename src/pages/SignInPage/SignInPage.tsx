@@ -97,7 +97,7 @@ const LoginPage = (): ReactElement => {
                         message: 'Password should contain maximum 20 symbols',
                       },
                     })}
-                    type="text"
+                    type="password"
                     placeholder="password"
                   />
                   {errors.password && <p>{errors.password.message}</p>}
