@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { ReactElement, useEffect, useState } from 'react';
@@ -60,7 +61,12 @@ const BoardPage = (): ReactElement => {
             </NavLink>
             <div className={styles.mainContainer}>
               {columns.map((column: Column) => (
-                <ColumnItem setLoading={setLoading} column={column} deleteColumn={deleteColumn} />
+                <ColumnItem
+                  key={column._id}
+                  setLoading={setLoading}
+                  column={column}
+                  deleteColumn={deleteColumn}
+                />
               ))}
               <div className={styles.addButton}>
                 <div className={styles.buttonAddContainer}>

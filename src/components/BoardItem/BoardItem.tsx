@@ -21,7 +21,7 @@ const BoardItem = ({ boardInfo, deleteCurrentBoard }: Props): ReactElement => {
   const [modalWindow, setModalWindow] = useState(false);
   const boardNumber = boardInfo._id.slice(boardInfo._id.length - 4);
 
-  const toggleModalWindow = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+  const toggleModalWindow = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
     event.preventDefault();
     setModalWindow(!modalWindow);
   };

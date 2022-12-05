@@ -21,4 +21,19 @@ ManagerAppApi.interceptors.request.use((config) => {
   throw new Error(`no headers!`);
 });
 
+// ManagerAppApi.interceptors.response.use(
+//   (config) => {
+//     return config;
+//   },
+//   async (error: AxiosError) => {
+//     if (error.response?.status !== 400) {
+//       try {
+//       } catch (e) {
+//         console.log(e);
+//       }
+//     }
+//     return error.response;
+//   }
+// );
+
 export default ManagerAppApi;
