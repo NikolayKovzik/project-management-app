@@ -28,7 +28,7 @@ const ProfilePage = (): ReactElement => {
   };
 
   const dispatch = useAppDispatch();
-  const deleteProfile = async (): Promise<void> => {
+  const deleteUserFromAPi = async (): Promise<number> => {
     if (localStorage.getItem('user') !== null) {
       const userIdLocalStorage = String(localStorage.getItem('user'));
       const usersInfo: User[] = await (await UsersApi.getUsers()).data;
@@ -40,7 +40,13 @@ const ProfilePage = (): ReactElement => {
         }
       });
 
-      UsersApi.deleteUser(deleteIdUser);
+      const result = await UsersApi.deleteUser(deleteIdUser);
+      return result.status;
+    }
+    return 0;
+  };
+  const deleteProfile = async (): Promise<void> => {
+    if ((await deleteUserFromAPi()) === 200) {
       dispatch(changeAuthStatus(false));
       localStorage.removeItem('project-management-app-token');
       localStorage.removeItem('token-created-time');
