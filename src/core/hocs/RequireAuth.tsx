@@ -7,9 +7,7 @@ const RequireAuth = ({ children }: { children: JSX.Element }): ReactElement => {
   const { isAuth } = useAppSelector((state) => state.auth);
   // TODO get auth status
   const location = useLocation();
-  console.log('RequireAuth');
   // useEffect(() => {
-  //   console.log('isAuth wass changed');
   // }, [isAuth]);
   const dispatch = useAppDispatch();
   const nav = useNavigate();

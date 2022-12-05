@@ -9,7 +9,6 @@ export const TOKEN_LIFETIME = 43200000;
 class AuthApi {
   static async signUp(userData: UserRegistrationData): Promise<AxiosResponse<User>> {
     const res = await ManagerAppApi.post<User>(`/auth/signup`, userData); //  registration
-    // console.log('resp signUp', res);
     if (+res.status === 200) {
       const { login, password } = userData;
       this.signIn({ login, password });
