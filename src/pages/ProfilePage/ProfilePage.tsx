@@ -9,10 +9,16 @@ import styles from './ProfilePage.module.scss';
 
 const ProfilePage = (): ReactElement => {
   const [modalWindow, setModalWindow] = useState(false);
+  const [modalSaveWindow, setModalSaveWindow] = useState(false);
 
   const toggleModalWindow = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     event.preventDefault();
     setModalWindow(!modalWindow);
+  };
+
+  const toggleSaveModalWindow = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+    event.preventDefault();
+    setModalSaveWindow(!modalSaveWindow);
   };
 
   const deleteProfile = (): void => {
@@ -28,6 +34,9 @@ const ProfilePage = (): ReactElement => {
           deleteProfile={deleteProfile}
         />
       )}
+      {modalSaveWindow && (
+        <ModalWindow type="saveprofile" toggleModalWindow={toggleSaveModalWindow} />
+      )}
       <div className="container">
         <div className={styles.container}>
           <div className={styles.mainContainer}>
@@ -39,7 +48,7 @@ const ProfilePage = (): ReactElement => {
                   <p>Edit your profile</p>
                 </div>
               </div>
-              <ModalWindow type="profile" />
+              <ModalWindow type="profile" setModalSaveWindow={setModalSaveWindow} />
             </div>
             <div className={styles.deleteAccount}>
               <button type="button" onClick={toggleModalWindow}>

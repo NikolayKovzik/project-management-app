@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store';
@@ -16,6 +16,7 @@ const SignUpPage = (): ReactElement => {
   const navigate = useNavigate();
   const navState = useLocation().state;
   const dispatch = useAppDispatch();
+  const [login, setLogin] = useState('');
   const { message, loginStatus } = useAppSelector((state) => state.auth);
 
   const handleSuccessSubmit = (): void => {
@@ -40,10 +41,12 @@ const SignUpPage = (): ReactElement => {
     if (loginStatus === 'succeeded') {
       handleSuccessSubmit();
       dispatch(clearLoginStatus());
+      localStorage.setItem('user', login);
     }
   }, [loginStatus]);
 
   const onSubmit: SubmitHandler<IFormInput> = (data: IFormInput): void => {
+    setLogin(data.login);
     dispatch(sendRegisterRequest({ name: data.name, login: data.login, password: data.password }));
   };
 
