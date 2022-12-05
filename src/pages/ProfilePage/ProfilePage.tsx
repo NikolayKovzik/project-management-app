@@ -1,4 +1,10 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable no-underscore-dangle */
 import React, { ReactElement, useState } from 'react';
+import { User } from 'core/api/models';
+import UsersApi from 'core/api/UsersApi';
+import { useAppDispatch } from 'store';
+import { changeAuthStatus } from 'store/authSlice';
 
 import ModalWindow from 'components/ModalWindow/ModalWindow';
 
@@ -21,8 +27,25 @@ const ProfilePage = (): ReactElement => {
     setModalSaveWindow(!modalSaveWindow);
   };
 
-  const deleteProfile = (): void => {
-    console.log('delete profile');
+  const dispatch = useAppDispatch();
+  const deleteProfile = async (): Promise<void> => {
+    if (localStorage.getItem('user') !== null) {
+      const userIdLocalStorage = String(localStorage.getItem('user'));
+      const usersInfo: User[] = await (await UsersApi.getUsers()).data;
+      let deleteIdUser = '';
+
+      usersInfo.map((user: User) => {
+        if (user.login === userIdLocalStorage) {
+          deleteIdUser = user._id;
+        }
+      });
+
+      UsersApi.deleteUser(deleteIdUser);
+      dispatch(changeAuthStatus(false));
+      localStorage.removeItem('project-management-app-token');
+      localStorage.removeItem('token-created-time');
+      localStorage.removeItem('user');
+    }
   };
 
   return (
