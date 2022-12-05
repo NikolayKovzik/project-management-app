@@ -17,11 +17,15 @@ const AddTask = ({ toggleModalWindow, createTask }: Props): ReactElement => {
   };
 
   const addTask = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+    let userIdLocalStorage = 'USER';
+    if (localStorage.getItem('user') !== null) {
+      userIdLocalStorage = String(localStorage.getItem('user'));
+    }
     const task: TaskCreateBody = {
       title,
       order: 1,
       description,
-      userId: 'USER2',
+      userId: userIdLocalStorage,
       users: [],
     };
     createTask?.(task);

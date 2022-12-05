@@ -1,32 +1,62 @@
 @import url('../../../variables/Variables.module.scss');
 
+.formEdit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
 .title {
   font-size: 24px;
   font-family: 'Montserrat-Bold';
   color: var(--color-darkpurple);
 }
 
-.inputContainer {
+.input {
   display: flex;
+  height: 46px;
+  justify-content: space-between;
   width: 100%;
 
   p {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
     width: 30%;
     font-size: 18px;
     color: var(--color-darkpurple);
   }
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 70%;
+
+  p {
+    text-align: left;
+    width: 100%;
+    padding-left: 25px;
+    color: var(--color-white);
+    font-size: 11px;
+    font-family: 'Montserrat-Regular';
+  }
 
   input {
-    width: 70%;
-    font-family: 'Montserrat-Regular';
-    font-size: 16px;
-    border: 2px solid var(--color-darkpurple);
     color: var(--color-darkpurple);
+    font-size: 18px;
+    font-family: 'Montserrat-Regular';
+    padding: 2px 15px;
+    padding-left: 25px;
     border-radius: 20px;
-    padding: 5px 20px;
+    border: 1px solid var(--color-black);
+    -webkit-box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.3);
   }
 
   .password {

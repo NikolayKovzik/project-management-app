@@ -5,6 +5,7 @@ import React, { ReactElement } from 'react';
 import AddColumn from './AddColumn/AddColumn';
 import AddTask from './AddTask/AddTask';
 import CreateBoard from './CreateBoard/CreateBoard';
+import CreateProfile from './CreateProfile/CreateProfile';
 import DeleteBoard from './DeleteBoard/DeleteBoard';
 import DeleteColumn from './DeleteColumn/DeleteColumn';
 import DeleteProfile from './DeleteProfile/DeleteProfile';
@@ -16,6 +17,7 @@ import styles from './ModalWindow.module.scss';
 
 const ModalWindow = ({
   toggleModalWindow,
+  setModalSaveWindow,
   deleteBoard,
   deleteProfile,
   createColumn,
@@ -50,10 +52,11 @@ const ModalWindow = ({
           <DeleteBoard deleteBoard={deleteBoard} toggleModalWindow={toggleModalWindow} />
         )}
         {type === TYPES.CREATE && <CreateBoard toggleModalWindow={toggleModalWindow} />}
-        {type === TYPES.PROFILE && <EditProfile />}
+        {type === TYPES.PROFILE && <EditProfile setModalSaveWindow={setModalSaveWindow} />}
         {type === TYPES.DELETEPROFILE && (
           <DeleteProfile deleteProfile={deleteProfile} toggleModalWindow={toggleModalWindow} />
         )}
+        {type === TYPES.SAVEPROFILE && <CreateProfile toggleModalWindow={toggleModalWindow} />}
         {type === TYPES.CREATECOLUMN && (
           <AddColumn createColumn={createColumn} toggleModalWindow={toggleModalWindow} />
         )}

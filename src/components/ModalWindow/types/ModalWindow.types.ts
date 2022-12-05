@@ -1,7 +1,9 @@
+import { Dispatch, SetStateAction } from 'react';
 import { ColumnBody, TaskCreateBody } from 'core/api/models';
 
 type Props = {
   toggleModalWindow?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  setModalSaveWindow?: Dispatch<SetStateAction<boolean>>;
   deleteBoard?: () => void;
   deleteProfile?: () => void;
   deleteCurrentColumn?: () => void;
@@ -16,6 +18,7 @@ const TYPES = {
   CREATE: 'create',
   PROFILE: 'profile',
   DELETEPROFILE: 'deleteprofile',
+  SAVEPROFILE: 'saveprofile',
   DELETECOLUMN: 'deletecolumn',
   CREATECOLUMN: 'createcolumn',
   CREATETASK: 'createtask',
