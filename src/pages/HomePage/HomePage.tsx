@@ -1,7 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
-import { User } from 'core/api/models';
-import UsersApi from 'core/api/UsersApi';
-import { useAppDispatch, useAppSelector } from 'store';
+import React, { ReactElement } from 'react';
 
 import mainImage from '../../assets/images/kanaban.png';
 import kirillImage from '../../assets/images/kirill.png';
@@ -11,17 +8,6 @@ import igorImage from '../../assets/images/shah.png';
 import styles from './HomePage.module.scss';
 
 const HomePage = (): ReactElement => {
-  const todos = useAppSelector((state) => state.todos.list);
-  const dispatch = useAppDispatch();
-
-  const getUsers = async (): Promise<void> => {
-    const usersInfo: User[] = await (await UsersApi.getUsers()).data;
-  };
-
-  useEffect(() => {
-    getUsers();
-  }, []);
-
   return (
     <section className={styles.home}>
       <div className="container">

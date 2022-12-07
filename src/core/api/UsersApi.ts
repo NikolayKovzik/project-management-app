@@ -7,13 +7,11 @@ import { User, UserRegistrationData } from './models';
 class UsersApi {
   static async getUsers(): Promise<AxiosResponse<User[]>> {
     const res = await ManagerAppApi.get<User[]>(`/users`);
-    console.log('resp getUsers', res);
     return res;
   }
 
   static async getUser(userId: string): Promise<AxiosResponse<User>> {
     const res = await ManagerAppApi.get<User>(`/users/${userId}`);
-    console.log('resp getUser', res);
     return res;
   }
 
@@ -23,13 +21,11 @@ class UsersApi {
     newUser: UserRegistrationData
   ): Promise<AxiosResponse<User>> {
     const res = await ManagerAppApi.put<User>(`/users/${userId}`, newUser);
-    console.log('resp', res);
     return res;
   }
 
   static async deleteUser(userId: string): Promise<AxiosResponse<User>> {
     const res = await ManagerAppApi.delete<User>(`/users/${userId}`);
-    console.log('resp deleteUser', res);
     return res;
   }
 }

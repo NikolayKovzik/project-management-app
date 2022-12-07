@@ -16,6 +16,10 @@ const store = configureStore({
     auth: authSlice,
     fetch: fetchExampleSlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export default store;

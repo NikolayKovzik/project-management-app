@@ -97,7 +97,7 @@ const ColumnItem = ({ column, deleteColumn, setLoading }: Props): ReactElement =
         <div className={styles.filterContainer}>
           <ul className={styles.boardContainer}>
             {tasks.map((elem) => (
-              <li>
+              <li key={elem._id}>
                 <p>{elem.title}</p>
                 <button
                   type="button"

@@ -41,7 +41,11 @@ const MainPage = (): ReactElement => {
           <div className={styles.container}>
             <div className={styles.mainContainer}>
               {data.map((board: Board) => (
-                <BoardItem boardInfo={board} deleteCurrentBoard={deleteCurrentBoard} />
+                <BoardItem
+                  key={board._id}
+                  boardInfo={board}
+                  deleteCurrentBoard={deleteCurrentBoard}
+                />
               ))}
             </div>
           </div>

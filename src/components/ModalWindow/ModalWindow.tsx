@@ -31,10 +31,12 @@ const ModalWindow = ({
   };
 
   return (
-    <button
-      type="button"
+    <div
       className={type === TYPES.PROFILE ? styles.modalProfileWindow : styles.modalWindow}
-      onClick={toggleModalWindow}
+      onClick={(e): void => {
+        if (toggleModalWindow)
+          toggleModalWindow(e as unknown as React.MouseEvent<HTMLButtonElement, MouseEvent>);
+      }}
     >
       <div className={type === TYPES.PROFILE ? styles.filterUnActive : styles.filter} />
       <div
@@ -73,7 +75,7 @@ const ModalWindow = ({
           <DeleteTask deleteCurrentTask={deleteCurrentTask} toggleModalWindow={toggleModalWindow} />
         )}
       </div>
-    </button>
+    </div>
   );
 };
 

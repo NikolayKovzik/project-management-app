@@ -47,10 +47,6 @@ const LoginPage = (): ReactElement => {
     }
   }, [loginStatus]);
 
-  useEffect(() => {
-    console.log('mounted');
-  }, []);
-
   const onSubmit: SubmitHandler<IFormInput> = (data: IFormInput): void => {
     dispatch(sendLoginRequest({ login: data.login, password: data.password }));
     // dispatch(sendLoginRequest({ login: 'Ilo7776', password: 'qwerty123' }));

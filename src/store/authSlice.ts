@@ -46,11 +46,9 @@ const authSlice = createSlice({
     checkAuth(state: AuthState) {
       const token = localStorage.getItem('project-management-app-token');
       if (!token || isExpiredToken()) {
-        console.log('!token || isExpiredToken()');
         state.isAuth = false;
       }
       if (token && !isExpiredToken()) {
-        console.log('token && !isExpiredToken()');
         state.isAuth = true;
       }
     },
@@ -71,7 +69,6 @@ const authSlice = createSlice({
       })
       .addCase(sendLoginRequest.rejected, (state, action) => {
         // if (action.error.message === 'Request failed with status code 401') {
-        //   console.log('GG');
         // }
         // if (action.payload instanceof AxiosError) {
         // }
